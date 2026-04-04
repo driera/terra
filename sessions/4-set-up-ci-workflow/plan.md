@@ -27,8 +27,8 @@ Triggers:
 
 Steps in order:
 1. `actions/checkout@v4`
-2. `actions/setup-node@v4` with `node-version: 'lts/*'`
-3. `pnpm/action-setup@v4` (reads pnpm version from `package.json` `packageManager` field if set, otherwise latest)
+2. `pnpm/action-setup@v4` with `version: 10` — must come before setup-node so pnpm cache can be resolved
+3. `actions/setup-node@v4` with `node-version: 'lts/*'` and `cache: 'pnpm'`
 4. `pnpm install --frozen-lockfile`
 5. `pnpm lint`
 6. `pnpm exec tsc -b --noEmit`

@@ -34,8 +34,8 @@ One workflow file at `.github/workflows/ci.yml`. One job (`ci`) on `ubuntu-lates
 
 - `.github/workflows/ci.yml` — workflow file with steps:
   1. `actions/checkout@v4` — check out the repo
-  2. `actions/setup-node@v4` (LTS) — set up Node
-  3. `pnpm/action-setup@v4` — set up pnpm
+  2. `pnpm/action-setup@v4` — set up pnpm (must come before setup-node so cache resolution works)
+  3. `actions/setup-node@v4` (LTS, `cache: 'pnpm'`) — set up Node with pnpm cache
   4. `pnpm install --frozen-lockfile` — install deps
   5. `pnpm lint` — lint
   6. `pnpm exec tsc -b --noEmit` — type-check (explicit, so failures are attributed correctly)
