@@ -15,3 +15,12 @@ Work through these with `/write-issue` one by one.
 - [ ] **Switch between satellite and vector tiles** — toggle satellite imagery and vector map tiles _(user-story)_
 - [ ] **Toggle elevation isolines** — toggle isolines on/off to read terrain gradient _(user-story)_
 - [ ] **Draw a point on the map** — place a point on an existing line or in a new location _(user-story)_
+
+## Engineering tasks
+
+- [ ] **Scaffold Vite + React + TypeScript project** — initialise with pnpm, configure tsconfig strict _(task)_
+- [ ] **Set up ESLint** — configure for React + TypeScript _(task)_
+- [ ] **Set up Prettier** — configure and integrate with ESLint _(task)_
+- [ ] **Set up Vitest** — configure with React Testing Library _(task)_
+- [ ] **Set up CI workflow** — lint → type-check → test → build on every PR and push to main _(task)_
+- [ ] **Set up GitHub Pages deploy** — deploy to GitHub Pages after CI passes on main _(task)_
