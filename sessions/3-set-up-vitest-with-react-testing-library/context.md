@@ -40,6 +40,7 @@ Vitest runs inside Vite's pipeline. Test environment is `jsdom`. A setup file (`
 ### Dependencies
 
 New devDependencies:
+
 - `vitest` — test runner, Vite-native
 - `@testing-library/react` — renders React components in jsdom
 - `@testing-library/jest-dom` — custom DOM matchers (`.toBeInTheDocument()`, etc.)
