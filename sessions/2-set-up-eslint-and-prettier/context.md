@@ -30,6 +30,7 @@ ESLint flat config + Prettier as independent tools. `eslint-config-prettier` dis
 ### Architecture
 
 Two independent tools invoked via pnpm scripts:
+
 - `pnpm lint` → ESLint (`eslint.config.js`)
 - `pnpm format` → Prettier, writes in place
 - `pnpm format:check` → Prettier, exits non-zero if files would change (used in CI)
@@ -45,6 +46,7 @@ No plugin that runs Prettier inside ESLint.
 ### Dependencies
 
 New packages (devDependencies):
+
 - `prettier` — code formatter
 - `eslint-config-prettier` — disables ESLint rules that conflict with Prettier output
 
@@ -61,6 +63,7 @@ Both tools exit non-zero on failure — sufficient for CI. `eslint-config-pretti
 ### Testing
 
 No unit tests. Verification:
+
 - `pnpm lint` exits 0 on the current codebase
 - `pnpm format:check` exits 0 on the current codebase
 - Manual spot check: both fail correctly on intentionally malformed input

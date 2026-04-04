@@ -1,9 +1,10 @@
-<!-- .github/ISSUE_TEMPLATE/task.md -->
----
+## <!-- .github/ISSUE_TEMPLATE/task.md -->
+
 name: Task
 about: Engineering work
 labels: 'tooling'
 assignees: ''
+
 ---
 
 ## Problem

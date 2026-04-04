@@ -1,9 +1,10 @@
-<!-- .github/ISSUE_TEMPLATE/user-story.md -->
----
+## <!-- .github/ISSUE_TEMPLATE/user-story.md -->
+
 name: User Story
 about: A feature or improvement from a user's perspective
 labels: 'feature'
 assignees: ''
+
 ---
 
 ## Goal
