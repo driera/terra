@@ -23,4 +23,13 @@ Current milestone: `MVP — in progress`
 
 ## Development
 
-_Setup instructions will live here once the tech stack is defined._
+**Requirements:** Node.js, pnpm
+
+```bash
+pnpm install       # install dependencies
+pnpm start         # dev server (Vite)
+pnpm test          # run tests in watch mode (Vitest)
+pnpm build         # type-check + production build
+pnpm lint          # ESLint
+pnpm format        # Prettier
+```
