@@ -6,7 +6,7 @@ import Map from './Map'
 
 expect.extend(toHaveNoViolations)
 
-const axe = configureAxe({ rules: {} })
+const axe = configureAxe()
 
 const mockRemove = vi.fn()
 const mockAddControl = vi.fn()
@@ -52,13 +52,19 @@ describe('Map', () => {
     const callArg = vi.mocked(maplibregl.Map).mock.calls[0][0]
     expect(callArg.style).toBe('https://tiles.openfreemap.org/styles/liberty')
     expect(callArg.container).toBeInstanceOf(HTMLElement)
-    expect(callArg.center).toBeDefined()
-    expect(callArg.zoom).toBeDefined()
+    expect(callArg.center).toEqual([2.1734, 41.3851])
+    expect(callArg.zoom).toBe(12)
   })
 
   it('assigns the map instance to window.map on mount', () => {
     render(<Map />)
     expect(window.map).toBeDefined()
+  })
+
+  it('adds the AttributionControl to the map', () => {
+    render(<Map />)
+    expect(mockAddControl).toHaveBeenCalledOnce()
+    expect(mockAddControl.mock.calls[0][0]).toBeInstanceOf(maplibregl.AttributionControl)
   })
 
   it('calls map.remove() and deletes window.map on unmount', () => {

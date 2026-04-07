@@ -7,7 +7,7 @@ import App from './App'
 
 expect.extend(toHaveNoViolations)
 
-const axe = configureAxe({ rules: {} })
+const axe = configureAxe()
 
 vi.mock('maplibre-gl', async (importOriginal) => {
   const actual = await importOriginal<typeof maplibregl>()

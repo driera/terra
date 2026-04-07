@@ -20,6 +20,7 @@ function Map() {
       zoom: DEFAULT_ZOOM,
     })
 
+    map.addControl(new maplibregl.AttributionControl())
     window.map = map
 
     return () => {
