@@ -34,7 +34,7 @@ deleted on unmount. The global type is declared in `src/global.d.ts`.
 
 ## Tasks
 
-### 1. Install dependencies and set up PostCSS
+### [x] 1. Install dependencies and set up PostCSS
 
 Install runtime and dev dependencies, then create the PostCSS config.
 
