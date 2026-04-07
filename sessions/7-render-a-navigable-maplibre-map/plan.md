@@ -47,7 +47,7 @@ Commit: `chore: install maplibre-gl, jest-axe, postcss-preset-env (#7)`
 
 ---
 
-### 2. Declare global Window type
+### [x] 2. Declare global Window type
 
 Create `src/global.d.ts` to extend the Window interface so `window.map` is typed and doesn't
 produce TS errors in component code or tests.
@@ -61,7 +61,7 @@ Test cases: none — type declaration only.
 What to implement:
 - `src/global.d.ts` with the Window augmentation
 
-### 3. Build the Map component
+### [x] 3. Build the Map component
 
 Create the Map domain: component, styles, tests, and barrel.
 
@@ -88,7 +88,7 @@ What to implement:
   `window.map`
 - `src/Map/index.ts` — barrel: `export { default as Map } from './Map'`
 
-### 4. Wire Map into App
+### [x] 4. Wire Map into App
 
 Replace the `<h1>Terra</h1>` placeholder in `App.tsx` with `<Map />`. Update `App.test.tsx`
 to reflect the new structure.

@@ -1,9 +1,7 @@
+import { Map } from './Map'
+
 function App() {
-  return (
-    <main>
-      <h1>Terra</h1>
-    </main>
-  )
+  return <Map />
 }
 
 export default App
