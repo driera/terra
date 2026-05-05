@@ -22,6 +22,7 @@ function Map() {
 
     window.map = map
 
+    // 'contours' source is defined in the custom MapTiler style — see ADR 002
     map.once('load', () => {
       map.addLayer({
         id: 'contour-line',
