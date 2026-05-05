@@ -49,6 +49,18 @@ docs: document terrain view approach
 
 ---
 
+## MapTiler
+
+Custom style forked from `outdoor-v2` with POI, trails, and native contour layers removed.
+
+- **Style ID:** `019df8cf-b54b-74e9-81d2-7c1f124b88dd`
+- **Bundled sources:** `contours`, `landform`, `maptiler_planet_v4`, `outdoor`, `terrain-rgb`
+- **API key:** `VITE_MAPTILER_API_KEY` in `.env.local` (gitignored) — see `.env.example`
+
+The `contours` source is already in the style — no `addSource` needed. Add layers directly via `map.once('load', ...)`.
+
+---
+
 ## Principles
 
 - **TDD** — tests before or alongside implementation, always
