@@ -93,3 +93,25 @@ What to implement:
 - `.github/workflows/ci.yml` build step: add `env: VITE_MAPTILER_API_KEY: ${{ secrets.VITE_MAPTILER_API_KEY }}`
 
 Commit: `chore: add MapTiler API key to env files and CI (#8)`
+
+---
+
+### 5. Switch to custom MapTiler style and remove native layer hiding
+
+The base style was changed from `outdoor-v2` to a custom MapTiler style
+(`019df8cf-b54b-74e9-81d2-7c1f124b88dd`) that has POI, trails, native contours, and
+other unwanted layers already removed. This makes the runtime `setLayoutProperty` hiding
+unnecessary — the layers don't exist in the style.
+
+Test cases:
+- Style URL contains the custom style ID and `test-key`
+- `setLayoutProperty` is NOT called (no native layers to hide)
+- `addSource` and `addLayer` assertions for contours remain unchanged
+
+What to implement:
+- `STYLE_URL` → `` `https://api.maptiler.com/maps/019df8cf-b54b-74e9-81d2-7c1f124b88dd/style.json?key=${import.meta.env.VITE_MAPTILER_API_KEY}` ``
+- Remove `NATIVE_CONTOUR_LAYERS` constant and `setLayoutProperty` calls from `map.on('load')`
+- Update `Map.test.tsx`: update style URL assertion, remove `mockSetLayoutProperty` and the "hides native contour layers" test
+- Update `ADR 002` to reflect the revised decision (custom style chosen over `outdoor-v2` + runtime hiding)
+
+Commit: `feat: use custom MapTiler style without native layer hiding (#8)`
