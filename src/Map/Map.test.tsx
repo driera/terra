@@ -9,7 +9,6 @@ expect.extend(toHaveNoViolations)
 const axe = configureAxe()
 
 const mockRemove = vi.fn()
-const mockOn = vi.fn()
 const mockAddLayer = vi.fn()
 
 vi.mock('maplibre-gl', async (importOriginal) => {
@@ -21,7 +20,6 @@ vi.mock('maplibre-gl', async (importOriginal) => {
       Map: vi.fn().mockImplementation(function () {
         return {
           remove: mockRemove,
-          on: mockOn,
           once: mockOnce,
           addLayer: mockAddLayer,
         }
@@ -34,13 +32,13 @@ const mockOnce = vi.fn()
 
 function triggerLoad() {
   const loadCall = mockOnce.mock.calls.find(([event]) => event === 'load')
-  if (loadCall) loadCall[1]()
+  if (!loadCall) throw new Error('load handler not registered')
+  loadCall[1]()
 }
 
 describe('Map', () => {
   beforeEach(() => {
     mockRemove.mockClear()
-    mockOn.mockClear()
     mockOnce.mockClear()
     mockAddLayer.mockClear()
     vi.mocked(maplibregl.Map).mockClear()
