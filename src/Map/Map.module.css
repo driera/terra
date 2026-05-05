@@ -2,3 +2,7 @@
   width: 100dvw;
   height: 100dvh;
 }
+
+:global(.maplibregl-map) {
+  height: 100%;
+}

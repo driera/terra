@@ -16,8 +16,3 @@ body {
 #root {
   height: 100%;
 }
-
-.maplibregl-map,
-.maplibregl-canvas-container {
-  height: 100%;
-}

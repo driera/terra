@@ -1,4 +1,5 @@
 import maplibregl from 'maplibre-gl'
+import 'maplibre-gl/dist/maplibre-gl.css'
 import { useEffect, useRef } from 'react'
 import styles from './Map.module.css'
 
