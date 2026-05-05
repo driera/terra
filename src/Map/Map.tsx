@@ -4,7 +4,6 @@ import { useEffect, useRef } from 'react'
 import styles from './Map.module.css'
 
 const STYLE_URL = `https://api.maptiler.com/maps/019df8cf-b54b-74e9-81d2-7c1f124b88dd/style.json?key=${import.meta.env.VITE_MAPTILER_API_KEY}`
-const CONTOURS_SOURCE_URL = `https://api.maptiler.com/tiles/contours-v2/tiles.json?key=${import.meta.env.VITE_MAPTILER_API_KEY}`
 const DEFAULT_CENTER: [number, number] = [2.1734, 41.3851]
 const DEFAULT_ZOOM = 12
 
@@ -23,12 +22,7 @@ function Map() {
 
     window.map = map
 
-    map.on('load', () => {
-      map.addSource('contours', {
-        type: 'vector',
-        url: CONTOURS_SOURCE_URL,
-      })
-
+    map.once('load', () => {
       map.addLayer({
         id: 'contour-line',
         type: 'line',

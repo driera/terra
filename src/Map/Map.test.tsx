@@ -10,7 +10,6 @@ const axe = configureAxe()
 
 const mockRemove = vi.fn()
 const mockOn = vi.fn()
-const mockAddSource = vi.fn()
 const mockAddLayer = vi.fn()
 
 vi.mock('maplibre-gl', async (importOriginal) => {
@@ -23,7 +22,7 @@ vi.mock('maplibre-gl', async (importOriginal) => {
         return {
           remove: mockRemove,
           on: mockOn,
-          addSource: mockAddSource,
+          once: mockOnce,
           addLayer: mockAddLayer,
         }
       }),
@@ -31,8 +30,10 @@ vi.mock('maplibre-gl', async (importOriginal) => {
   }
 })
 
+const mockOnce = vi.fn()
+
 function triggerLoad() {
-  const loadCall = mockOn.mock.calls.find(([event]) => event === 'load')
+  const loadCall = mockOnce.mock.calls.find(([event]) => event === 'load')
   if (loadCall) loadCall[1]()
 }
 
@@ -40,7 +41,7 @@ describe('Map', () => {
   beforeEach(() => {
     mockRemove.mockClear()
     mockOn.mockClear()
-    mockAddSource.mockClear()
+    mockOnce.mockClear()
     mockAddLayer.mockClear()
     vi.mocked(maplibregl.Map).mockClear()
   })
@@ -72,21 +73,9 @@ describe('Map', () => {
     expect(window.map).toBeDefined()
   })
 
-  it('registers a load event handler', () => {
+  it('registers a one-time load event handler', () => {
     render(<Map />)
-    expect(mockOn).toHaveBeenCalledWith('load', expect.any(Function))
-  })
-
-  it('adds the contours-v2 source on load', () => {
-    render(<Map />)
-    triggerLoad()
-
-    expect(mockAddSource).toHaveBeenCalledOnce()
-    const [sourceId, sourceConfig] = mockAddSource.mock.calls[0]
-    expect(sourceId).toBe('contours')
-    expect(sourceConfig.type).toBe('vector')
-    expect(sourceConfig.url).toContain('contours-v2')
-    expect(sourceConfig.url).toContain('test-key')
+    expect(mockOnce).toHaveBeenCalledWith('load', expect.any(Function))
   })
 
   it('adds contour line and label layers on load', () => {
