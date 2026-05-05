@@ -9,7 +9,6 @@ expect.extend(toHaveNoViolations)
 const axe = configureAxe()
 
 const mockRemove = vi.fn()
-const mockAddControl = vi.fn()
 
 vi.mock('maplibre-gl', async (importOriginal) => {
   const actual = await importOriginal<typeof maplibregl>()
@@ -20,11 +19,9 @@ vi.mock('maplibre-gl', async (importOriginal) => {
       Map: vi.fn().mockImplementation(function () {
         return {
           remove: mockRemove,
-          addControl: mockAddControl,
           on: vi.fn(),
         }
       }),
-      AttributionControl: vi.fn(),
     },
   }
 })
@@ -32,7 +29,6 @@ vi.mock('maplibre-gl', async (importOriginal) => {
 describe('Map', () => {
   beforeEach(() => {
     mockRemove.mockClear()
-    mockAddControl.mockClear()
     vi.mocked(maplibregl.Map).mockClear()
   })
 
@@ -59,12 +55,6 @@ describe('Map', () => {
   it('assigns the map instance to window.map on mount', () => {
     render(<Map />)
     expect(window.map).toBeDefined()
-  })
-
-  it('adds the AttributionControl to the map', () => {
-    render(<Map />)
-    expect(mockAddControl).toHaveBeenCalledOnce()
-    expect(mockAddControl.mock.calls[0][0]).toBeInstanceOf(maplibregl.AttributionControl)
   })
 
   it('calls map.remove() and deletes window.map on unmount', () => {

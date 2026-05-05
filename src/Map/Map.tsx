@@ -17,7 +17,7 @@ function Map() {
       style: STYLE_URL,
       center: DEFAULT_CENTER,
       zoom: DEFAULT_ZOOM,
-    });
+    })
 
     window.map = map
 

@@ -50,6 +50,7 @@ No special error handling for this issue. If the OpenFreeMap style fails to load
 ### Testing
 
 MapLibre requires WebGL and cannot render in jsdom. Strategy:
+
 - Mock `maplibre-gl` in tests
 - Assert the container `<div>` renders
 - Verify `maplibregl.Map` was called with expected options (style URL, container, center, zoom)
