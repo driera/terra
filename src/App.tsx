@@ -1,6 +1,6 @@
 import { Map } from './Map'
 
-function App() {
+const App = () => {
   return <Map />
 }
 

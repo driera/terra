@@ -1,0 +1,23 @@
+html,
+body {
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+}
+
+.maplibregl-map,
+.maplibregl-canvas-container {
+  height: 100%;
+}

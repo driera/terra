@@ -1,5 +1,4 @@
 import maplibregl from 'maplibre-gl'
-import 'maplibre-gl/dist/maplibre-gl.css'
 import { useEffect, useRef } from 'react'
 import styles from './Map.module.css'
 
@@ -18,9 +17,8 @@ function Map() {
       style: STYLE_URL,
       center: DEFAULT_CENTER,
       zoom: DEFAULT_ZOOM,
-    })
+    });
 
-    map.addControl(new maplibregl.AttributionControl())
     window.map = map
 
     return () => {
