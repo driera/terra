@@ -168,7 +168,7 @@ Commit: `feat: add Coordinates HUD component (#11)`
 
 ---
 
-### 8. Render `Coordinates` in App
+### 8. Render `Coordinates` in App [x]
 
 Final integration.
 

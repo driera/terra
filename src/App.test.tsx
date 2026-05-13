@@ -11,6 +11,10 @@ vi.mock('./map-controls/MapControls', () => ({
   default: () => <div data-testid="map-controls" />,
 }))
 
+vi.mock('./hud/Coordinates', () => ({
+  default: () => <div data-testid="coordinates" />,
+}))
+
 expect.extend(toHaveNoViolations)
 
 const axe = configureAxe()
@@ -26,11 +30,18 @@ describe('App', () => {
     expect(screen.getByTestId('map-controls')).toBeInTheDocument()
   })
 
-  it('renders MapCanvas and MapControls as siblings inside a layout wrapper', () => {
+  it('renders Coordinates', () => {
+    render(<App />)
+    expect(screen.getByTestId('coordinates')).toBeInTheDocument()
+  })
+
+  it('renders MapCanvas, MapControls and Coordinates as siblings inside a layout wrapper', () => {
     render(<App />)
     const canvas = screen.getByTestId('map-canvas')
     const controls = screen.getByTestId('map-controls')
+    const coordinates = screen.getByTestId('coordinates')
     expect(canvas.parentElement).toBe(controls.parentElement)
+    expect(canvas.parentElement).toBe(coordinates.parentElement)
   })
 
   it('has no a11y violations', async () => {
