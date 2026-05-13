@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { act, renderHook } from '@testing-library/react'
 import type maplibregl from 'maplibre-gl'
 import * as pointer from './pointer'
 
@@ -70,6 +71,61 @@ describe('pointer', () => {
   describe('getPointer', () => {
     it('returns the current store snapshot', () => {
       expect(pointer.getPointer()).toEqual({ coordinates: null })
+    })
+  })
+
+  describe('usePointer', () => {
+    it('returns the current pointer state for the requested keys', () => {
+      const map = createMockMap()
+      pointer.init(map as unknown as maplibregl.Map)
+      const { result } = renderHook(() => pointer.usePointer(['coordinates']))
+      expect(result.current.coordinates).toBeNull()
+    })
+
+    it('rerenders when a subscribed key changes', () => {
+      const map = createMockMap()
+      pointer.init(map as unknown as maplibregl.Map)
+      const { result } = renderHook(() => pointer.usePointer(['coordinates']))
+      act(() => {
+        fireHandler(map, 'mousemove', { lngLat: { lng: 1, lat: 2 } })
+      })
+      expect(result.current.coordinates).toEqual([1, 2])
+    })
+
+    // Selective rerender filtering across unrelated keys is verified end-to-end
+    // here via the no-op set path. Cross-domain isolation (e.g. camera key changes
+    // not rerendering pointer subscribers) will be verified once a second domain
+    // exists in PointerState — currently only `coordinates` is defined.
+    it('does not rerender when set produces no actual change', () => {
+      const map = createMockMap()
+      pointer.init(map as unknown as maplibregl.Map)
+      let renderCount = 0
+      renderHook(() => {
+        renderCount++
+        return pointer.usePointer(['coordinates'])
+      })
+      const before = renderCount
+      act(() => {
+        // coordinates is already null; mouseleave sets it to null again — no change.
+        fireHandler(map, 'mouseleave', {})
+      })
+      expect(renderCount).toBe(before)
+    })
+
+    it('unsubscribes on unmount', () => {
+      const map = createMockMap()
+      pointer.init(map as unknown as maplibregl.Map)
+      let renderCount = 0
+      const { unmount } = renderHook(() => {
+        renderCount++
+        return pointer.usePointer(['coordinates'])
+      })
+      unmount()
+      const before = renderCount
+      act(() => {
+        fireHandler(map, 'mousemove', { lngLat: { lng: 5, lat: 6 } })
+      })
+      expect(renderCount).toBe(before)
     })
   })
 })

@@ -110,7 +110,7 @@ Commit: `feat: add pointer domain module (#11)`
 
 ---
 
-### 5. Add `usePointer` hook
+### 5. Add `usePointer` hook [x]
 
 React binding for the pointer store using `useSyncExternalStore` with a `changedKeys` filter.
 
