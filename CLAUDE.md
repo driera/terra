@@ -77,3 +77,4 @@ pnpm test:run     # vitest run (CI mode)
 - **Documentation-first** — README and issues written before code
 - **Short, intentional commits** — each commit tells a story
 - **Clean code + functional patterns** — no shortcuts for speed
+- **Dependency injection** — inject dependencies (e.g. logger, fetch) as parameters; don't import side-effectful globals directly. See `src/location/` for the established pattern.
