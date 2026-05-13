@@ -62,7 +62,7 @@ Commit: `refactor: move layout orchestration to App (#11)`
 
 ---
 
-### 3. Add generic `Store` (StateManager) class
+### 3. Add generic `Store` (StateManager) class [x]
 
 Reactive state primitive — generic, no map knowledge. Lives at `src/mapApi/Store.ts`.
 
