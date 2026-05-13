@@ -1,0 +1,12 @@
+.coordinates {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.25rem 0.5rem;
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  z-index: 1;
+}

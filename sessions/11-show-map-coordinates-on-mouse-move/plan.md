@@ -150,7 +150,7 @@ Commit: `feat: wire pointer plugin into mapApi (#11)`
 
 ---
 
-### 7. Add `Coordinates` HUD component
+### 7. Add `Coordinates` HUD component [x]
 
 Dumb component in `src/hud/`. Consumes `usePointer(["coordinates"])`.
 
