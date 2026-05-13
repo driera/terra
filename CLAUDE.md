@@ -61,6 +61,17 @@ The `contours` source is already in the style — no `addSource` needed. Add lay
 
 ---
 
+## Map architecture
+
+All map interactions go through `mapApi` (`src/Map/mapApi.ts`) — never call MapLibre methods directly. See ADR 003.
+
+- `mapApi.addLayer()` and `mapApi.flyTo()` are load-aware — callers never check `isStyleLoaded()`
+- Map defaults live in `src/Map/constants.ts` — update there, not inline
+- Layer definitions live in `src/Map/default-layers.ts` — add new layers there
+- UI controls live in `src/map-controls/`
+
+---
+
 ## Validation
 
 ```bash
