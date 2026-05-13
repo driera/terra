@@ -34,6 +34,14 @@ describe('useInitialCenter', () => {
     expect(result.current).toEqual(madrid)
   })
 
+  it('logs a warning when browser location fails', async () => {
+    renderHook(() => useInitialCenter(rejects(), resolves(madrid)))
+    await act(async () => {})
+    expect(vi.mocked(logger.warn)).toHaveBeenCalledWith(
+      'Browser location unavailable, trying IP-based location'
+    )
+  })
+
   it('returns null when both resolvers reject', async () => {
     const { result } = renderHook(() => useInitialCenter(rejects(), rejects()))
     await act(async () => {})

@@ -14,7 +14,10 @@ const useInitialCenter = (
     let cancelled = false
 
     getBrowserLoc()
-      .catch(() => getIpLoc())
+      .catch(() => {
+        logger.warn('Browser location unavailable, trying IP-based location')
+        return getIpLoc()
+      })
       .then((coords) => {
         if (!cancelled) setCenter(coords)
       })
