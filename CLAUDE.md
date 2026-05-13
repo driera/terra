@@ -61,6 +61,16 @@ The `contours` source is already in the style — no `addSource` needed. Add lay
 
 ---
 
+## Validation
+
+```bash
+pnpm lint         # eslint
+pnpm check-types  # tsc --noEmit
+pnpm test:run     # vitest run (CI mode)
+```
+
+---
+
 ## Principles
 
 - **TDD** — tests before or alongside implementation, always
