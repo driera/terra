@@ -15,14 +15,17 @@ const useInitialCenter = (
 
     getBrowserLoc()
       .catch(() => {
-        logger.warn('Browser location unavailable, trying IP-based location')
+        logger.info('[USER LOCATION] Browser API unavailable, trying IP-based location')
         return getIpLoc()
       })
       .then((coords) => {
-        if (!cancelled) setCenter(coords)
+        if (!cancelled) {
+          logger.info(`[USER LOCATION] Resolved to [${coords[0]}, ${coords[1]}]`)
+          setCenter(coords)
+        }
       })
       .catch(() => {
-        logger.warn('Location resolution failed, centering to fallback coords')
+        logger.info('[USER LOCATION] Resolution failed, centering to fallback coords')
       })
 
     return () => {

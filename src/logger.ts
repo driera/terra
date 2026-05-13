@@ -1,10 +1,10 @@
 export interface Logger {
-  warn: (message: string) => void
+  info: (message: string) => void
 }
 
 export const consoleLogger: Logger = {
-  warn: (message) => {
-    if (import.meta.env.DEV) console.warn(message)
+  info: (message) => {
+    if (import.meta.env.DEV) console.info(message)
   },
 }
 

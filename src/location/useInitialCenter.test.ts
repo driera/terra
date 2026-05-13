@@ -4,7 +4,7 @@ import useInitialCenter from './useInitialCenter'
 import type { Coordinates, LocationResolver } from './types'
 import logger from '../logger'
 
-vi.mock('../logger', () => ({ default: { warn: vi.fn() } }))
+vi.mock('../logger', () => ({ default: { info: vi.fn() } }))
 
 const barcelona: Coordinates = [2.1734, 41.3851]
 const madrid: Coordinates = [-3.7, 40.4]
@@ -34,11 +34,19 @@ describe('useInitialCenter', () => {
     expect(result.current).toEqual(madrid)
   })
 
-  it('logs a warning when browser location fails', async () => {
+  it('logs when browser location fails', async () => {
     renderHook(() => useInitialCenter(rejects(), resolves(madrid)))
     await act(async () => {})
-    expect(vi.mocked(logger.warn)).toHaveBeenCalledWith(
-      'Browser location unavailable, trying IP-based location'
+    expect(vi.mocked(logger.info)).toHaveBeenCalledWith(
+      '[USER LOCATION] Browser API unavailable, trying IP-based location'
+    )
+  })
+
+  it('logs the resolved coordinates', async () => {
+    renderHook(() => useInitialCenter(resolves(barcelona), rejects()))
+    await act(async () => {})
+    expect(vi.mocked(logger.info)).toHaveBeenCalledWith(
+      `[USER LOCATION] Resolved to [${barcelona[0]}, ${barcelona[1]}]`
     )
   })
 
@@ -48,11 +56,11 @@ describe('useInitialCenter', () => {
     expect(result.current).toBeNull()
   })
 
-  it('logs a warning when both resolvers fail', async () => {
+  it('logs when both resolvers fail', async () => {
     renderHook(() => useInitialCenter(rejects(), rejects()))
     await act(async () => {})
-    expect(vi.mocked(logger.warn)).toHaveBeenCalledWith(
-      'Location resolution failed, centering to fallback coords'
+    expect(vi.mocked(logger.info)).toHaveBeenCalledWith(
+      '[USER LOCATION] Resolution failed, centering to fallback coords'
     )
   })
 
