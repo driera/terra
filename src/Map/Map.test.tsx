@@ -3,6 +3,9 @@ import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import maplibregl from 'maplibre-gl'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import Map from './Map'
+import useInitialCenter from '../location/useInitialCenter'
+
+vi.mock('../location/useInitialCenter')
 
 expect.extend(toHaveNoViolations)
 
@@ -10,6 +13,7 @@ const axe = configureAxe()
 
 const mockRemove = vi.fn()
 const mockAddLayer = vi.fn()
+const mockFlyTo = vi.fn()
 
 vi.mock('maplibre-gl', async (importOriginal) => {
   const actual = await importOriginal<typeof maplibregl>()
@@ -22,6 +26,7 @@ vi.mock('maplibre-gl', async (importOriginal) => {
           remove: mockRemove,
           once: mockOnce,
           addLayer: mockAddLayer,
+          flyTo: mockFlyTo,
         }
       }),
     },
@@ -41,7 +46,9 @@ describe('Map', () => {
     mockRemove.mockClear()
     mockOnce.mockClear()
     mockAddLayer.mockClear()
+    mockFlyTo.mockClear()
     vi.mocked(maplibregl.Map).mockClear()
+    vi.mocked(useInitialCenter).mockReturnValue(null)
   })
 
   afterEach(() => {
@@ -62,8 +69,8 @@ describe('Map', () => {
       'https://api.maptiler.com/maps/019df8cf-b54b-74e9-81d2-7c1f124b88dd/style.json?key=test-key'
     )
     expect(callArg.container).toBeInstanceOf(HTMLElement)
-    expect(callArg.center).toEqual([2.1734, 41.3851])
-    expect(callArg.zoom).toBe(12)
+    expect(callArg.center).toEqual([-3.7, 40.4])
+    expect(callArg.zoom).toBe(3)
   })
 
   it('assigns the map instance to window.map on mount', () => {
@@ -97,6 +104,18 @@ describe('Map', () => {
     expect(labelLayer.type).toBe('symbol')
     expect(labelLayer.source).toBe('contours')
     expect(labelLayer['source-layer']).toBe('contour')
+  })
+
+  it('does not call flyTo when useInitialCenter returns null', () => {
+    vi.mocked(useInitialCenter).mockReturnValue(null)
+    render(<Map />)
+    expect(mockFlyTo).not.toHaveBeenCalled()
+  })
+
+  it('calls flyTo with resolved coordinates when useInitialCenter returns a location', () => {
+    vi.mocked(useInitialCenter).mockReturnValue([2.1734, 41.3851])
+    render(<Map />)
+    expect(mockFlyTo).toHaveBeenCalledWith({ center: [2.1734, 41.3851], zoom: 12 })
   })
 
   it('calls map.remove() and deletes window.map on unmount', () => {
