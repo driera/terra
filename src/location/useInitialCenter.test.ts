@@ -1,7 +1,10 @@
 import { renderHook, act } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import useInitialCenter from './useInitialCenter'
 import type { Coordinates, LocationResolver } from './types'
+import logger from '../logger'
+
+vi.mock('../logger', () => ({ default: { warn: vi.fn() } }))
 
 const barcelona: Coordinates = [2.1734, 41.3851]
 const madrid: Coordinates = [-3.7, 40.4]
@@ -35,6 +38,14 @@ describe('useInitialCenter', () => {
     const { result } = renderHook(() => useInitialCenter(rejects(), rejects()))
     await act(async () => {})
     expect(result.current).toBeNull()
+  })
+
+  it('logs a warning when both resolvers fail', async () => {
+    renderHook(() => useInitialCenter(rejects(), rejects()))
+    await act(async () => {})
+    expect(vi.mocked(logger.warn)).toHaveBeenCalledWith(
+      'Location resolution failed, centering to fallback coords'
+    )
   })
 
   it('does not update state after unmount', async () => {

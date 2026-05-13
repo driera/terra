@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import type { Coordinates, LocationResolver } from './types'
 import getBrowserLocation from './getBrowserLocation'
 import getIpLocation from './getIpLocation'
+import logger from '../logger'
 
 const useInitialCenter = (
   getBrowserLoc: LocationResolver = getBrowserLocation,
@@ -18,7 +19,7 @@ const useInitialCenter = (
         if (!cancelled) setCenter(coords)
       })
       .catch(() => {
-        if (import.meta.env.DEV) console.warn('Location resolution failed, centering to fallback coords')
+        logger.warn('Location resolution failed, centering to fallback coords')
       })
 
     return () => {
