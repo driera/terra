@@ -27,7 +27,7 @@ Introduce `mapApi` — a module-level singleton façade that owns the MapLibre i
   - `zoomIn()`, `zoomOut()` — delegate directly to the MapLibre instance
   - All methods are no-ops if called before `register` or after `destroy`
 
-- **`src/controls/MapControls.tsx`** — two buttons (zoom in, zoom out) positioned absolute over the map. Each calls the corresponding `mapApi` method.
+- **`src/map-controls/MapControls.tsx`** — two buttons (zoom in, zoom out) positioned absolute over the map. Each calls the corresponding `mapApi` method.
 
 ### mapApi lifecycle and Map.tsx
 

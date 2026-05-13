@@ -12,7 +12,7 @@ Terra's map has no abstraction over the MapLibre instance — `Map.tsx` calls it
 - `src/Map/mapApi.ts` — singleton façade (co-located with Map.tsx)
 - `src/Map/mapApi.test.ts` — unit tests for all mapApi methods
 - `src/Map/constants.ts` — `DEFAULT_CENTER` and `DEFAULT_ZOOM` extracted here
-- `src/controls/MapControls.tsx` + `.module.css` + `.test.tsx`
+- `src/map-controls/MapControls.tsx` + `.module.css` + `.test.tsx`
 
 **Patterns to follow:**
 - CSS modules for component styles
@@ -77,8 +77,8 @@ Test cases:
 - Axe reports zero violations
 
 What to implement:
-- `src/controls/MapControls.tsx` with two buttons
-- `src/controls/MapControls.module.css` for positioning and layout
+- `src/map-controls/MapControls.tsx` with two buttons
+- `src/map-controls/MapControls.module.css` for positioning and layout
 - `<MapControls />` rendered inside the map container in `Map.tsx`
 
 Commit: `feat: add zoom controls (#9)`
