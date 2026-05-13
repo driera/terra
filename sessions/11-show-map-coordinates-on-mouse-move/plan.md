@@ -128,7 +128,7 @@ Commit: `feat: add usePointer hook (#11)`
 
 ---
 
-### 6. Wire `pointer` into mapApi plugin registry
+### 6. Wire `pointer` into mapApi plugin registry [x]
 
 `index.ts` becomes the composition root.
 
