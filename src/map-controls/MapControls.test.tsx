@@ -3,10 +3,10 @@ import userEvent from '@testing-library/user-event'
 import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import { act } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import mapApi from '../Map/mapApi'
+import mapApi from '../mapApi'
 import MapControls from './MapControls'
 
-vi.mock('../Map/mapApi')
+vi.mock('../mapApi')
 
 expect.extend(toHaveNoViolations)
 

@@ -1,7 +1,7 @@
-import { Map } from './Map'
+import { MapCanvas } from './MapCanvas'
 
 const App = () => {
-  return <Map />
+  return <MapCanvas />
 }
 
 export default App

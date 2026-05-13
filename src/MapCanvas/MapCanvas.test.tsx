@@ -2,12 +2,12 @@ import { render, act } from '@testing-library/react'
 import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import maplibregl from 'maplibre-gl'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import Map from './Map'
-import mapApi from './mapApi'
+import MapCanvas from './MapCanvas'
+import mapApi from '../mapApi'
 import useInitialCenter from '../location/useInitialCenter'
 
 vi.mock('../location/useInitialCenter')
-vi.mock('./mapApi')
+vi.mock('../mapApi')
 
 expect.extend(toHaveNoViolations)
 
@@ -26,7 +26,7 @@ vi.mock('maplibre-gl', async (importOriginal) => {
   }
 })
 
-describe('Map', () => {
+describe('MapCanvas', () => {
   beforeEach(() => {
     vi.mocked(maplibregl.Map).mockClear()
     vi.mocked(mapApi.register).mockClear()
@@ -41,12 +41,12 @@ describe('Map', () => {
   })
 
   it('renders the map container div', () => {
-    const { container } = render(<Map />)
+    const { container } = render(<MapCanvas />)
     expect(container.firstChild).toBeInTheDocument()
   })
 
   it('initialises maplibregl.Map with correct options', () => {
-    render(<Map />)
+    render(<MapCanvas />)
 
     expect(maplibregl.Map).toHaveBeenCalledOnce()
     const callArg = vi.mocked(maplibregl.Map).mock.calls[0][0]
@@ -59,13 +59,13 @@ describe('Map', () => {
   })
 
   it('calls mapApi.register with the map instance after construction', () => {
-    render(<Map />)
+    render(<MapCanvas />)
     expect(mapApi.register).toHaveBeenCalledOnce()
     expect(mapApi.register).toHaveBeenCalledWith(expect.any(Object))
   })
 
   it('calls mapApi.addLayer twice for contour-line and contour-label', () => {
-    render(<Map />)
+    render(<MapCanvas />)
     const layerIds = vi.mocked(mapApi.addLayer).mock.calls.map(([layer]) => layer.id)
     expect(layerIds).toContain('contour-line')
     expect(layerIds).toContain('contour-label')
@@ -73,24 +73,24 @@ describe('Map', () => {
 
   it('does not call mapApi.flyTo when useInitialCenter returns null', () => {
     vi.mocked(useInitialCenter).mockReturnValue(null)
-    render(<Map />)
+    render(<MapCanvas />)
     expect(mapApi.flyTo).not.toHaveBeenCalled()
   })
 
   it('calls mapApi.flyTo with resolved coordinates when useInitialCenter returns a location', () => {
     vi.mocked(useInitialCenter).mockReturnValue([2.1734, 41.3851])
-    render(<Map />)
+    render(<MapCanvas />)
     expect(mapApi.flyTo).toHaveBeenCalledWith({ center: [2.1734, 41.3851], zoom: 12 })
   })
 
   it('calls mapApi.destroy on unmount', () => {
-    const { unmount } = render(<Map />)
+    const { unmount } = render(<MapCanvas />)
     unmount()
     expect(mapApi.destroy).toHaveBeenCalledOnce()
   })
 
   it('has no a11y violations', async () => {
-    const { container } = render(<Map />)
+    const { container } = render(<MapCanvas />)
     await act(async () => {
       const results = await axe(container)
       expect(results).toHaveNoViolations()

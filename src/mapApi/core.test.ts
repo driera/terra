@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest'
-import mapApi from './mapApi'
+import mapApi from './core'
 import type maplibregl from 'maplibre-gl'
 
 type MockMap = {
@@ -24,7 +24,7 @@ function createMockMap(styleLoaded = true): MockMap {
   }
 }
 
-describe('mapApi', () => {
+describe('mapApi core', () => {
   afterEach(() => {
     mapApi.destroy()
     delete window.map

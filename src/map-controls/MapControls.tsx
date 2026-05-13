@@ -1,4 +1,4 @@
-import mapApi from '../Map/mapApi'
+import mapApi from '../mapApi'
 import styles from './MapControls.module.css'
 
 function MapControls() {

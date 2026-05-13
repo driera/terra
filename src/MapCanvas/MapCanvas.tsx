@@ -1,17 +1,17 @@
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { useEffect, useRef } from 'react'
-import styles from './Map.module.css'
+import styles from './MapCanvas.module.css'
 import useInitialCenter from '../location/useInitialCenter'
 import { DEFAULT_CENTER, DEFAULT_ZOOM } from './constants'
-import mapApi from './mapApi'
+import mapApi from '../mapApi'
 import MapControls from '../map-controls/MapControls'
 import { defaultLayers } from './default-layers'
 
 const STYLE_URL = `https://api.maptiler.com/maps/019df8cf-b54b-74e9-81d2-7c1f124b88dd/style.json?key=${import.meta.env.VITE_MAPTILER_API_KEY}`;
 const DEFAULT_ZOOM_LEVEL = 12
 
-const Map = () => {
+const MapCanvas = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const center = useInitialCenter()
 
@@ -46,4 +46,4 @@ const Map = () => {
   )
 }
 
-export default Map
+export default MapCanvas
