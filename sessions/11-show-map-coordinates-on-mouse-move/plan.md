@@ -85,7 +85,7 @@ Commit: `feat: add Store reactive state primitive (#11)`
 
 ---
 
-### 4. Add `pointer` domain module
+### 4. Add `pointer` domain module [x]
 
 Map-aware state for cursor position. Lives at `src/mapApi/pointer.ts`. Holds a `Store<PointerState>` instance, wires MapLibre `mousemove`/`mouseleave`.
 
