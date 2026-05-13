@@ -7,9 +7,9 @@ import { DEFAULT_CENTER, DEFAULT_ZOOM } from './constants'
 import mapApi from './mapApi'
 import MapControls from '../map-controls/MapControls'
 
-const STYLE_URL = `https://api.maptiler.com/maps/019df8cf-b54b-74e9-81d2-7c1f124b88dd/style.json?key=${import.meta.env.VITE_MAPTILER_API_KEY}`
+const STYLE_URL = `https://api.maptiler.com/maps/019df8cf-b54b-74e9-81d2-7c1f124b88dd/style.json?key=${import.meta.env.VITE_MAPTILER_API_KEY}`;
 
-function Map() {
+const Map = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const center = useInitialCenter()
 
@@ -24,37 +24,8 @@ function Map() {
     })
 
     mapApi.register(map)
-
-    // 'contours' source is defined in the custom MapTiler style — see ADR 002
-    mapApi.addLayer({
-      id: 'contour-line',
-      type: 'line',
-      source: 'contours',
-      'source-layer': 'contour',
-      paint: {
-        'line-color': '#8a7c6e',
-        'line-width': ['match', ['get', 'nth_line'], 10, 1.5, 0.5],
-        'line-opacity': ['match', ['get', 'nth_line'], 10, 0.8, 0.5],
-      },
-    })
-
-    mapApi.addLayer({
-      id: 'contour-label',
-      type: 'symbol',
-      source: 'contours',
-      'source-layer': 'contour',
-      filter: ['==', ['get', 'nth_line'], 10],
-      layout: {
-        'symbol-placement': 'line',
-        'text-field': ['concat', ['to-string', ['get', 'ele']], 'm'],
-        'text-size': 10,
-      },
-      paint: {
-        'text-color': '#8a7c6e',
-        'text-halo-color': '#ffffff',
-        'text-halo-width': 1,
-      },
-    })
+    mapApi.addLayer(defaultLayers.contourLine)
+    mapApi.addLayer(defaultLayers.contourLabel)
 
     return () => {
       mapApi.destroy()
