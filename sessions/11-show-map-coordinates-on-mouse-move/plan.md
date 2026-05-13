@@ -43,7 +43,7 @@ Commit: `refactor: promote mapApi to directory and rename Map to MapCanvas (#11)
 
 ---
 
-### 2. Make App the layout orchestrator
+### 2. Make App the layout orchestrator [x]
 
 App owns the positioning context. `MapCanvas` no longer renders `MapControls` as a child.
 
