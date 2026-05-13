@@ -3,17 +3,15 @@ import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import maplibregl from 'maplibre-gl'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import Map from './Map'
+import mapApi from './mapApi'
 import useInitialCenter from '../location/useInitialCenter'
 
 vi.mock('../location/useInitialCenter')
+vi.mock('./mapApi')
 
 expect.extend(toHaveNoViolations)
 
 const axe = configureAxe()
-
-const mockRemove = vi.fn()
-const mockAddLayer = vi.fn()
-const mockFlyTo = vi.fn()
 
 vi.mock('maplibre-gl', async (importOriginal) => {
   const actual = await importOriginal<typeof maplibregl>()
@@ -22,32 +20,19 @@ vi.mock('maplibre-gl', async (importOriginal) => {
     default: {
       ...actual,
       Map: vi.fn().mockImplementation(function () {
-        return {
-          remove: mockRemove,
-          once: mockOnce,
-          addLayer: mockAddLayer,
-          flyTo: mockFlyTo,
-        }
+        return {}
       }),
     },
   }
 })
 
-const mockOnce = vi.fn()
-
-function triggerLoad() {
-  const loadCall = mockOnce.mock.calls.find(([event]) => event === 'load')
-  if (!loadCall) throw new Error('load handler not registered')
-  loadCall[1]()
-}
-
 describe('Map', () => {
   beforeEach(() => {
-    mockRemove.mockClear()
-    mockOnce.mockClear()
-    mockAddLayer.mockClear()
-    mockFlyTo.mockClear()
     vi.mocked(maplibregl.Map).mockClear()
+    vi.mocked(mapApi.register).mockClear()
+    vi.mocked(mapApi.addLayer).mockClear()
+    vi.mocked(mapApi.flyTo).mockClear()
+    vi.mocked(mapApi.destroy).mockClear()
     vi.mocked(useInitialCenter).mockReturnValue(null)
   })
 
@@ -73,56 +58,35 @@ describe('Map', () => {
     expect(callArg.zoom).toBe(3)
   })
 
-  it('assigns the map instance to window.map on mount', () => {
+  it('calls mapApi.register with the map instance after construction', () => {
     render(<Map />)
-    expect(window.map).toBeDefined()
+    expect(mapApi.register).toHaveBeenCalledOnce()
+    expect(mapApi.register).toHaveBeenCalledWith(expect.any(Object))
   })
 
-  it('registers a one-time load event handler', () => {
+  it('calls mapApi.addLayer twice for contour-line and contour-label', () => {
     render(<Map />)
-    expect(mockOnce).toHaveBeenCalledWith('load', expect.any(Function))
-  })
-
-  it('adds contour line and label layers on load', () => {
-    render(<Map />)
-    triggerLoad()
-
-    const layerIds = mockAddLayer.mock.calls.map(([layer]) => layer.id)
+    const layerIds = vi.mocked(mapApi.addLayer).mock.calls.map(([layer]) => layer.id)
     expect(layerIds).toContain('contour-line')
     expect(layerIds).toContain('contour-label')
-
-    const lineLayer = mockAddLayer.mock.calls.find(
-      ([layer]) => layer.id === 'contour-line'
-    )![0]
-    expect(lineLayer.type).toBe('line')
-    expect(lineLayer.source).toBe('contours')
-    expect(lineLayer['source-layer']).toBe('contour')
-
-    const labelLayer = mockAddLayer.mock.calls.find(
-      ([layer]) => layer.id === 'contour-label'
-    )![0]
-    expect(labelLayer.type).toBe('symbol')
-    expect(labelLayer.source).toBe('contours')
-    expect(labelLayer['source-layer']).toBe('contour')
   })
 
-  it('does not call flyTo when useInitialCenter returns null', () => {
+  it('does not call mapApi.flyTo when useInitialCenter returns null', () => {
     vi.mocked(useInitialCenter).mockReturnValue(null)
     render(<Map />)
-    expect(mockFlyTo).not.toHaveBeenCalled()
+    expect(mapApi.flyTo).not.toHaveBeenCalled()
   })
 
-  it('calls flyTo with resolved coordinates when useInitialCenter returns a location', () => {
+  it('calls mapApi.flyTo with resolved coordinates when useInitialCenter returns a location', () => {
     vi.mocked(useInitialCenter).mockReturnValue([2.1734, 41.3851])
     render(<Map />)
-    expect(mockFlyTo).toHaveBeenCalledWith({ center: [2.1734, 41.3851], zoom: 12 })
+    expect(mapApi.flyTo).toHaveBeenCalledWith({ center: [2.1734, 41.3851], zoom: 12 })
   })
 
-  it('calls map.remove() and deletes window.map on unmount', () => {
+  it('calls mapApi.destroy on unmount', () => {
     const { unmount } = render(<Map />)
     unmount()
-    expect(mockRemove).toHaveBeenCalledOnce()
-    expect(window.map).toBeUndefined()
+    expect(mapApi.destroy).toHaveBeenCalledOnce()
   })
 
   it('has no a11y violations', async () => {

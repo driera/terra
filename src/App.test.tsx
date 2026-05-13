@@ -16,7 +16,7 @@ vi.mock('maplibre-gl', async (importOriginal) => {
     default: {
       ...actual,
       Map: vi.fn().mockImplementation(function () {
-        return { remove: vi.fn(), on: vi.fn(), once: vi.fn(), addSource: vi.fn(), addLayer: vi.fn() }
+        return { remove: vi.fn(), on: vi.fn(), once: vi.fn(), addSource: vi.fn(), addLayer: vi.fn(), isStyleLoaded: vi.fn(() => true) }
       }),
     },
   }
