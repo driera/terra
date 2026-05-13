@@ -63,12 +63,18 @@ The `contours` source is already in the style — no `addSource` needed. Add lay
 
 ## Map architecture
 
-All map interactions go through `mapApi` (`src/Map/mapApi.ts`) — never call MapLibre methods directly. See ADR 003.
+All map interactions go through `mapApi` (`src/api/`) — never call MapLibre methods directly. See ADR 003 and ADR 005.
 
 - `mapApi.addLayer()` and `mapApi.flyTo()` are load-aware — callers never check `isStyleLoaded()`
-- Map defaults live in `src/Map/constants.ts` — update there, not inline
-- Layer definitions live in `src/Map/default-layers.ts` — add new layers there
-- UI controls live in `src/map-controls/`
+- Map defaults live in `src/canvas/constants.ts` — update there, not inline
+- Layer definitions live in `src/canvas/default-layers.ts` — add new layers there
+- UI controls live in `src/controls/`
+- HUD overlays (coordinates, etc.) live in `src/hud/`
+- Reactive map state uses the `Store<T>` + `useX(keys)` hook pattern from `src/api/` (e.g. `usePointer`). See ADR 004.
+
+### Folder convention
+
+Top-level folders under `src/` are categories (lowercase): `api`, `canvas`, `controls`, `hud`, `location`. Files inside use PascalCase for components (e.g. `MapCanvas.tsx`, `Coordinates.tsx`) and camelCase for modules/hooks.
 
 ---
 

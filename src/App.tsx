@@ -1,5 +1,5 @@
-import { MapCanvas } from './MapCanvas'
-import MapControls from './map-controls/MapControls'
+import { MapCanvas } from './canvas'
+import MapControls from './controls/MapControls'
 import Coordinates from './hud/Coordinates'
 import styles from './App.module.css'
 
