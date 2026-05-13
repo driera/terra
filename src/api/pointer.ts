@@ -23,6 +23,7 @@ const onMouseLeave = () => {
 }
 
 export const init = (map: maplibregl.Map): void => {
+  if (_map) destroy()
   _map = map
   map.on('mousemove', onMouseMove)
   map.on('mouseleave', onMouseLeave)

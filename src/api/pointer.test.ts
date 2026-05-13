@@ -68,6 +68,19 @@ describe('pointer', () => {
     })
   })
 
+  describe('init re-entry', () => {
+    it('detaches listeners from the previous map when init is called twice', () => {
+      const first = createMockMap()
+      const second = createMockMap()
+      pointer.init(first as unknown as maplibregl.Map)
+      pointer.init(second as unknown as maplibregl.Map)
+      expect(first.off).toHaveBeenCalledWith('mousemove', expect.any(Function))
+      expect(first.off).toHaveBeenCalledWith('mouseleave', expect.any(Function))
+      expect(second.on).toHaveBeenCalledWith('mousemove', expect.any(Function))
+      expect(second.on).toHaveBeenCalledWith('mouseleave', expect.any(Function))
+    })
+  })
+
   describe('getPointer', () => {
     it('returns the current store snapshot', () => {
       expect(pointer.getPointer()).toEqual({ coordinates: null })

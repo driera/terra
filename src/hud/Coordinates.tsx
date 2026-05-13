@@ -11,11 +11,7 @@ const Coordinates = () => {
   const [lng, lat] = coordinates
   const label = `${lat.toFixed(DECIMALS)}, ${lng.toFixed(DECIMALS)}`
 
-  return (
-    <div className={styles.coordinates} aria-live="polite">
-      {label}
-    </div>
-  )
+  return <div className={styles.coordinates}>{label}</div>
 }
 
 export default Coordinates
