@@ -3,10 +3,14 @@ import userEvent from '@testing-library/user-event'
 import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import { act } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import mapApi from '../api'
+import mapApi, { useDrawing } from '../api'
+import type { GeometryState } from '../api'
 import DrawingToolbar from './DrawingToolbar'
 
 vi.mock('../api')
+
+const emptyState: GeometryState = { vertices: [], cursor: null, geometries: [] }
+const withVertex: GeometryState = { vertices: [[0, 0]], cursor: null, geometries: [] }
 
 expect.extend(toHaveNoViolations)
 
@@ -17,6 +21,7 @@ describe('DrawingToolbar', () => {
     vi.mocked(mapApi.setDrawingMode).mockClear()
     vi.mocked(mapApi.cancelDrawing).mockClear()
     vi.mocked(mapApi.completeDrawing).mockClear()
+    vi.mocked(useDrawing).mockReturnValue(emptyState)
   })
 
   it('renders a "Draw line" button with aria-pressed="false" by default', () => {
@@ -45,7 +50,15 @@ describe('DrawingToolbar', () => {
     expect(mapApi.setDrawingMode).toHaveBeenLastCalledWith(null)
   })
 
-  it('"Done" button is visible when mode is active and clicking it calls completeDrawing()', async () => {
+  it('"Done" button is NOT visible when mode is active but no vertices placed', async () => {
+    vi.mocked(useDrawing).mockReturnValue(emptyState)
+    render(<DrawingToolbar />)
+    await userEvent.click(screen.getByRole('button', { name: /draw line/i }))
+    expect(screen.queryByRole('button', { name: /done/i })).toBeNull()
+  })
+
+  it('"Done" button is visible when mode is active and at least one vertex placed; clicking it calls completeDrawing()', async () => {
+    vi.mocked(useDrawing).mockReturnValue(withVertex)
     render(<DrawingToolbar />)
     await userEvent.click(screen.getByRole('button', { name: /draw line/i }))
     const doneBtn = screen.getByRole('button', { name: /done/i })
@@ -90,7 +103,8 @@ describe('DrawingToolbar', () => {
     })
   })
 
-  it('has no a11y violations in active state', async () => {
+  it('has no a11y violations in active state with vertices', async () => {
+    vi.mocked(useDrawing).mockReturnValue(withVertex)
     const { container } = render(<DrawingToolbar />)
     await userEvent.click(screen.getByRole('button', { name: /draw line/i }))
     await act(async () => {

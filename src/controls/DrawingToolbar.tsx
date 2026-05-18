@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import mapApi from '../api'
+import mapApi, { useDrawing } from '../api'
 import styles from './DrawingToolbar.module.css'
 
 function DrawingToolbar() {
   const [mode, setMode] = useState<'line' | null>(null)
+  const { vertices } = useDrawing(['vertices'])
 
   const toggleLine = () => {
     const next = mode === 'line' ? null : 'line'
@@ -32,13 +33,14 @@ function DrawingToolbar() {
       >
         Line
       </button>
-      {mode === 'line' && (
+      {mode === 'line' && vertices.length > 0 && (
         <button
           type="button"
-          className={styles.button}
+          aria-label="Done"
+          className={styles.iconButton}
           onClick={() => mapApi.completeDrawing()}
         >
-          Done
+          ✓
         </button>
       )}
     </div>
