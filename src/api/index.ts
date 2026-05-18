@@ -27,6 +27,9 @@ const mapApi = {
   flyTo: core.flyTo,
   zoomIn: core.zoomIn,
   zoomOut: core.zoomOut,
+  setDrawingMode: drawing.setMode,
+  cancelDrawing: drawing.cancel,
+  completeDrawing: drawing.complete,
 }
 
 export default mapApi
