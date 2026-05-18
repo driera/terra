@@ -33,9 +33,10 @@ const store = new GeometryStore()
 
 let _map: maplibregl.Map | null = null
 let _mode: 'line' | null = null
+let _sourcesReady = false
 
 const _syncToMap = (): void => {
-  if (!_map) return
+  if (!_map || !_sourcesReady) return
   const { vertices, cursor, geometries } = store.get()
   const draftCoords: [number, number][] = [...vertices, ...(cursor ? [cursor] : [])]
   const draftFC: GeoJSON.FeatureCollection =
@@ -70,6 +71,7 @@ const _registerSourcesAndLayers = (): void => {
   _map.addSource('terra-features', { type: 'geojson', data: EMPTY_COLLECTION })
   _map.addLayer(DRAFT_LINE_LAYER)
   _map.addLayer(FEATURES_LINE_LAYER)
+  _sourcesReady = true
 }
 
 export const init = (map: maplibregl.Map): void => {
@@ -88,12 +90,18 @@ export const destroy = (): void => {
   if (!_map) return
   _map.off('click', onClick)
   _map.off('mousemove', onMouseMove)
+  _map.getCanvas().style.cursor = ''
   _map = null
+  _mode = null
+  _sourcesReady = false
   store.reset()
 }
 
 export const setMode = (mode: 'line' | null): void => {
+  const wasActive = _mode !== null
   _mode = mode
+  if (_map) _map.getCanvas().style.cursor = mode === 'line' ? 'crosshair' : ''
+  if (wasActive && mode === null) cancel()
 }
 
 export const complete = (): void => {

@@ -5,6 +5,8 @@ import * as drawing from './drawing'
 
 type MockSource = { setData: ReturnType<typeof vi.fn> }
 
+type MockCanvas = { style: { cursor: string } }
+
 type MockMap = {
   on: ReturnType<typeof vi.fn>
   off: ReturnType<typeof vi.fn>
@@ -13,6 +15,8 @@ type MockMap = {
   getSource: ReturnType<typeof vi.fn>
   addSource: ReturnType<typeof vi.fn>
   addLayer: ReturnType<typeof vi.fn>
+  getCanvas: ReturnType<typeof vi.fn>
+  _canvas: MockCanvas
 }
 
 function createMockSource(): MockSource {
@@ -20,21 +24,22 @@ function createMockSource(): MockSource {
 }
 
 function createMockMap(styleLoaded = true): MockMap {
-  const draftSource = createMockSource()
-  const featuresSource = createMockSource()
-  return {
+  const sources: Record<string, MockSource> = {}
+  const canvas: MockCanvas = { style: { cursor: '' } }
+  const map: MockMap = {
     on: vi.fn(),
     off: vi.fn(),
     once: vi.fn(),
     isStyleLoaded: vi.fn().mockReturnValue(styleLoaded),
-    getSource: vi.fn((id: string) => {
-      if (id === 'terra-draft') return draftSource
-      if (id === 'terra-features') return featuresSource
-      return undefined
+    getSource: vi.fn((id: string) => sources[id]),
+    addSource: vi.fn((id: string) => {
+      sources[id] = createMockSource()
     }),
-    addSource: vi.fn(),
     addLayer: vi.fn(),
+    getCanvas: vi.fn(() => canvas),
+    _canvas: canvas,
   }
+  return map
 }
 
 function fireLngLat(map: MockMap, eventName: string, lng: number, lat: number) {
@@ -154,6 +159,18 @@ describe('drawing', () => {
       expect(() => drawing.cancel()).not.toThrow()
     })
 
+    it('click before style loads does not throw; data flushes after load', () => {
+      const map = createMockMap(false)
+      drawing.init(map as unknown as maplibregl.Map)
+      drawing.setMode('line')
+      expect(() => fireLngLat(map, 'click', 1, 2)).not.toThrow()
+      const onceCall = map.once.mock.calls.find(([name]) => name === 'load')
+      ;(onceCall![1] as () => void)()
+      fireLngLat(map, 'click', 3, 4)
+      const data = getSourceData(map, 'terra-draft')
+      expect(data.features[0].geometry.coordinates).toEqual([[1, 2], [3, 4]])
+    })
+
     it('destroy detaches click and mousemove listeners', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
@@ -221,6 +238,48 @@ describe('drawing', () => {
       drawing.cancel()
       const data = getSourceData(map, 'terra-draft')
       expect(data.features).toHaveLength(0)
+    })
+
+    it('setMode("line") sets the map canvas cursor to crosshair', () => {
+      const map = createMockMap()
+      drawing.init(map as unknown as maplibregl.Map)
+      drawing.setMode('line')
+      expect(map._canvas.style.cursor).toBe('crosshair')
+    })
+
+    it('setMode(null) restores the default map canvas cursor', () => {
+      const map = createMockMap()
+      drawing.init(map as unknown as maplibregl.Map)
+      drawing.setMode('line')
+      drawing.setMode(null)
+      expect(map._canvas.style.cursor).toBe('')
+    })
+
+    it('setMode(null) while drafting discards in-progress vertices and cursor', () => {
+      const map = createMockMap()
+      drawing.init(map as unknown as maplibregl.Map)
+      drawing.setMode('line')
+      fireLngLat(map, 'click', 0, 0)
+      fireLngLat(map, 'mousemove', 1, 1)
+      drawing.setMode(null)
+      const state = drawing.getGeometry()
+      expect(state.vertices).toEqual([])
+      expect(state.cursor).toBeNull()
+    })
+
+    it('setMode(null) while drafting clears terra-draft source and preserves geometries', () => {
+      const map = createMockMap()
+      drawing.init(map as unknown as maplibregl.Map)
+      drawing.setMode('line')
+      fireLngLat(map, 'click', 0, 0)
+      fireLngLat(map, 'click', 1, 1)
+      drawing.complete()
+      drawing.setMode('line')
+      fireLngLat(map, 'click', 2, 2)
+      drawing.setMode(null)
+      const draft = getSourceData(map, 'terra-draft')
+      expect(draft.features).toHaveLength(0)
+      expect(drawing.getGeometry().geometries).toHaveLength(1)
     })
   })
 
