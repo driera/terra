@@ -12,7 +12,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "preview": "vite preview",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc -b --noEmit"
   },
   "dependencies": {
     "maplibre-gl": "^5.22.0",
@@ -24,6 +24,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
+    "@types/geojson": "^7946.0.16",
     "@types/jest-axe": "^3.5.9",
     "@types/node": "^24.12.0",
     "@types/react": "^19.2.14",

@@ -1,21 +1,22 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 import { act, renderHook } from '@testing-library/react'
 import type maplibregl from 'maplibre-gl'
+import type GeoJSON from 'geojson'
 import * as drawing from './drawing'
 
-type MockSource = { setData: ReturnType<typeof vi.fn> }
+type MockSource = { setData: Mock<(data: unknown) => void> }
 
 type MockCanvas = { style: { cursor: string } }
 
 type MockMap = {
-  on: ReturnType<typeof vi.fn>
-  off: ReturnType<typeof vi.fn>
-  once: ReturnType<typeof vi.fn>
-  isStyleLoaded: ReturnType<typeof vi.fn>
-  getSource: ReturnType<typeof vi.fn>
-  addSource: ReturnType<typeof vi.fn>
-  addLayer: ReturnType<typeof vi.fn>
-  getCanvas: ReturnType<typeof vi.fn>
+  on: Mock<(name: string, cb: (e: unknown) => void) => void>
+  off: Mock<(name: string, cb: (e: unknown) => void) => void>
+  once: Mock<(name: string, cb: () => void) => void>
+  isStyleLoaded: Mock<() => boolean>
+  getSource: Mock<(id: string) => MockSource | undefined>
+  addSource: Mock<(id: string, source: unknown) => void>
+  addLayer: Mock<(layer: unknown) => void>
+  getCanvas: Mock<() => MockCanvas>
   _canvas: MockCanvas
 }
 
@@ -48,10 +49,10 @@ function fireLngLat(map: MockMap, eventName: string, lng: number, lat: number) {
   ;(call[1] as (e: unknown) => void)({ lngLat: { lng, lat } })
 }
 
-function getSourceData(map: MockMap, id: 'terra-draft' | 'terra-features') {
+function getSourceData(map: MockMap, id: 'terra-draft' | 'terra-features'): GeoJSON.FeatureCollection {
   const source = map.getSource(id) as MockSource
   const calls = source.setData.mock.calls
-  return calls.length > 0 ? calls[calls.length - 1][0] : undefined
+  return calls[calls.length - 1][0] as GeoJSON.FeatureCollection
 }
 
 describe('drawing', () => {
@@ -168,7 +169,8 @@ describe('drawing', () => {
       ;(onceCall![1] as () => void)()
       fireLngLat(map, 'click', 3, 4)
       const data = getSourceData(map, 'terra-draft')
-      expect(data.features[0].geometry.coordinates).toEqual([[1, 2], [3, 4]])
+      const geom = data.features[0].geometry as GeoJSON.LineString
+      expect(geom.coordinates).toEqual([[1, 2], [3, 4]])
     })
 
     it('destroy detaches click and mousemove listeners', () => {
