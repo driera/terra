@@ -3,9 +3,11 @@ import type maplibregl from 'maplibre-gl'
 
 vi.mock('./core')
 vi.mock('./pointer')
+vi.mock('./drawing')
 
 import core from './core'
 import * as pointer from './pointer'
+import * as drawing from './drawing'
 import mapApi from './index'
 
 describe('mapApi/index', () => {
@@ -14,6 +16,8 @@ describe('mapApi/index', () => {
     vi.mocked(core.destroy).mockClear()
     vi.mocked(pointer.init).mockClear()
     vi.mocked(pointer.destroy).mockClear()
+    vi.mocked(drawing.init).mockClear()
+    vi.mocked(drawing.destroy).mockClear()
   })
 
   afterEach(() => {
