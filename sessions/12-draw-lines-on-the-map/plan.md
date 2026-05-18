@@ -150,3 +150,120 @@ What to implement:
 - `src/App.tsx`: render `<DrawingToolbar />` in the layout
 
 Commit: `feat: add DrawingToolbar with line mode toggle (#12)`
+
+---
+
+## Review pass — fixes and UX polish
+
+Tasks 1–6 shipped. The `/review` pass surfaced four issues; Dani also identified three UX gaps in the DrawingToolbar. Tasks 7–11 address both before closing the issue.
+
+### 7. Discard draft on mode exit
+
+AC: "Exiting drawing mode discards any in-progress line." Currently `setDrawingMode(null)` only flips `_mode`; vertices and cursor persist in the store and reappear on re-entry.
+
+Test cases (`src/api/drawing.test.ts`):
+- `setMode(null)` while drafting (≥1 vertex) clears `vertices` and `cursor`
+- `terra-draft` source is cleared after `setMode(null)` while drafting
+- `setMode(null)` when no draft exists is a no-op (does not call sync redundantly — acceptable if cost is trivial; just assert no errors)
+- `geometries` is unchanged after `setMode(null)`
+
+What to implement (`src/api/drawing.ts`):
+- In `setMode`, when transitioning from non-null to `null`, call `cancel()` (or inline `store.clearDraft(); _syncToMap()`)
+
+---
+
+### 8. Guard against style-load race
+
+`_syncToMap` casts `getSource()` and calls `setData` without checking — if a click fires before the `once('load')` callback registers sources, it crashes.
+
+Test cases:
+- Click event fired before mocked `load` resolves does not throw
+- After `load` resolves, the next interaction syncs the accumulated state to `terra-draft`
+
+What to implement:
+- Module-level `_sourcesReady = false`, flipped to `true` at the end of `_registerSourcesAndLayers`
+- `_syncToMap()` early-returns when `!_sourcesReady`
+- `destroy()` resets `_sourcesReady = false`
+
+---
+
+### 9. Reuse `mapApi.addLayer` — DEFERRED (tech debt)
+
+**Status:** Deferred. Not done in this PR.
+
+**Why deferred:** `core.addLayer` uses core's singleton map ref (set via `core.register`), not the map instance passed to plugin `init()`. Calling `core.addLayer` from a plugin couples plugin tests to core registration, or requires changing the plugin contract to inject `addLayer`. The production benefit (removing one `isStyleLoaded / once('load')` block) doesn't justify the test/contract churn right now.
+
+**Future direction:** Either (a) add `core.addSource` and adjust the plugin contract to inject a load-aware add API, or (b) accept the duplication as the price of plugin isolation. Revisit when adding the next geometry primitive (polygon, point) — by then the duplication will be three copies and the refactor will pay off.
+
+---
+
+### 10. DrawingToolbar UX polish
+
+Three changes to the toolbar — position, layout, and contextual Done button.
+
+Test cases (`src/controls/DrawingToolbar.test.tsx`):
+- "Done" button does NOT render when `mode === 'line'` and `vertices.length === 0`
+- "Done" button renders when `mode === 'line'` and `vertices.length >= 1`
+- "Done" button uses `aria-label="Done"` and renders the `✓` glyph
+- Existing tests that asserted Done visibility based on mode alone are updated
+- axe passes in: idle, active-empty, active-with-vertices
+
+What to implement:
+- `src/controls/DrawingToolbar.tsx`:
+  - Consume `useDrawing(['vertices'])` to read draft state
+  - Render Done only when `mode === 'line' && draft.vertices.length > 0`
+  - Replace `Done` text with `✓` glyph; keep `aria-label="Done"`
+- `src/controls/DrawingToolbar.module.css`:
+  - `.toolbar`: `top: 1rem; left: 1rem` → `bottom: 1rem; left: 50%; transform: translateX(-50%)`
+  - `.toolbar`: `flex-direction: column` → `flex-direction: row`
+  - Mirror MapControls button sizing (`2rem × 2rem` square) for the Done icon button; keep Line button readable
+
+Side effect: resolves the "useDrawing exported but unused" review finding.
+
+---
+
+### 11. Issue housekeeping
+
+Acceptance criterion "Double-click (or Enter)" conflicts with the design decision (ADR 006) to drop dblclick for touch reliability.
+
+What to do:
+- `gh issue edit 12` — replace `Double-click (or Enter) completes the current line without exiting drawing mode` with `Enter (or Done button) completes the current line without exiting drawing mode`
+- `gh issue comment 12` — short note explaining the edit: dblclick dropped per ADR 006 (touch reliability); Enter + Done button cover completion
+
+---
+
+### 12. Crosshair cursor in line mode
+
+In line drawing mode, the map cursor should be `crosshair` instead of MapLibre's default grab/pointer.
+
+Test cases (`src/api/drawing.test.ts`):
+- `setMode('line')` sets `map.getCanvas().style.cursor` to `'crosshair'`
+- `setMode(null)` restores `cursor` to `''` (MapLibre default)
+
+What to implement (`src/api/drawing.ts`):
+- In `setMode`, set `_map.getCanvas().style.cursor` based on the new mode
+- In `destroy`, reset cursor to `''` and clear `_mode`
+
+---
+
+### Commits (suggested grouping)
+
+- `fix: discard draft when exiting drawing mode (#12)` — task 7
+- `fix: guard drawing sync against style-load race (#12)` — task 8
+- `refactor: reuse mapApi.addLayer in drawing plugin (#12)` — task 9
+- `feat: move toolbar to bottom-center, conditional Done icon (#12)` — task 10
+- `docs: update AC to drop dblclick per ADR 006` — task 11 (no code change; the gh edit is enough — skip the commit if there's nothing to commit)
+
+### Verification
+
+1. `pnpm test:run` — all tests pass with the new ones added
+2. `pnpm lint` and `pnpm check-types` — clean
+3. Manual:
+   - Toolbar sits bottom-center, buttons horizontal
+   - Click Line → no Done button yet
+   - Click on map → Done (✓) appears
+   - Click Done → line finalizes, Done disappears, mode stays active
+   - Mid-draft, click Line to deactivate → draft discarded, completed line remains; re-enter line mode → no leftover vertices
+   - Escape mid-draft → draft discarded, mode stays
+   - Enter mid-draft (≥2 vertices) → line finalizes
+4. `gh issue view 12` — AC reflects the edit; comment posted
