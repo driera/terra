@@ -1,5 +1,6 @@
 .metadata {
   padding: 0.25rem 0.5rem;
+  border-left: 1px solid #d0d0d0;
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
 }

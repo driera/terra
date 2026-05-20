@@ -22,15 +22,25 @@ describe('DrawingMetadata', () => {
     vi.mocked(useDrawing as Mock).mockReset()
   })
 
-  it('renders nothing when geometries is empty', () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue({ geometries: [] })
+  it('renders nothing when geometries and vertices are empty', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue({ geometries: [], vertices: [] })
     const { container } = render(<DrawingMetadata />)
     expect(container).toBeEmptyDOMElement()
+  })
+
+  it('shows "drawing…" when vertices exist but no completed geometries', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue({
+      geometries: [],
+      vertices: [[0, 0], [1, 1]],
+    })
+    render(<DrawingMetadata />)
+    expect(screen.getByText('drawing…')).toBeInTheDocument()
   })
 
   it('shows "1 line" when one geometry is present', () => {
     vi.mocked(useDrawing as Mock).mockReturnValue({
       geometries: [makeLine([[0, 0], [1, 1]])],
+      vertices: [],
     })
     render(<DrawingMetadata />)
     expect(screen.getByText(/1 line/)).toBeInTheDocument()
@@ -39,6 +49,7 @@ describe('DrawingMetadata', () => {
   it('shows plural "lines" when more than one geometry is present', () => {
     vi.mocked(useDrawing as Mock).mockReturnValue({
       geometries: [makeLine([[0, 0], [1, 1]]), makeLine([[2, 2], [3, 3], [4, 4]])],
+      vertices: [],
     })
     render(<DrawingMetadata />)
     expect(screen.getByText(/2 lines/)).toBeInTheDocument()
@@ -50,14 +61,25 @@ describe('DrawingMetadata', () => {
         makeLine([[0, 0], [1, 1], [2, 2]]),
         makeLine([[3, 3], [4, 4]]),
       ],
+      vertices: [],
     })
     render(<DrawingMetadata />)
     expect(screen.getByText(/5 vertices/)).toBeInTheDocument()
   })
 
+  it('shows "drawing…" indicator when a line is in progress alongside completed geometries', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue({
+      geometries: [makeLine([[0, 0], [1, 1]])],
+      vertices: [[2, 2], [3, 3]],
+    })
+    render(<DrawingMetadata />)
+    expect(screen.getByText(/drawing…/)).toBeInTheDocument()
+  })
+
   it('has no a11y violations when showing metadata', async () => {
     vi.mocked(useDrawing as Mock).mockReturnValue({
       geometries: [makeLine([[0, 0], [1, 1]])],
+      vertices: [],
     })
     const { container } = render(<DrawingMetadata />)
     await act(async () => {
