@@ -67,12 +67,13 @@ describe('DrawingToolbar', () => {
     expect(mapApi.completeDrawing).toHaveBeenCalledOnce()
   })
 
-  it('Escape keydown calls cancelDrawing() when mode is active; mode stays active', async () => {
+  it('Escape keydown exits drawing mode and discards draft', async () => {
     render(<DrawingToolbar />)
     await userEvent.click(screen.getByRole('button', { name: /draw line/i }))
     fireEvent.keyDown(document, { key: 'Escape' })
-    expect(mapApi.cancelDrawing).toHaveBeenCalledOnce()
-    expect(screen.getByRole('button', { name: /draw line/i })).toHaveAttribute('aria-pressed', 'true')
+    expect(mapApi.setDrawingMode).toHaveBeenLastCalledWith(null)
+    expect(mapApi.cancelDrawing).not.toHaveBeenCalled()
+    expect(screen.getByRole('button', { name: /draw line/i })).toHaveAttribute('aria-pressed', 'false')
   })
 
   it('Enter keydown calls completeDrawing() when mode is active; mode stays active', async () => {
@@ -86,6 +87,7 @@ describe('DrawingToolbar', () => {
   it('Escape keydown is a no-op when mode is inactive', () => {
     render(<DrawingToolbar />)
     fireEvent.keyDown(document, { key: 'Escape' })
+    expect(mapApi.setDrawingMode).not.toHaveBeenCalled()
     expect(mapApi.cancelDrawing).not.toHaveBeenCalled()
   })
 

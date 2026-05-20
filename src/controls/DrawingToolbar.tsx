@@ -15,7 +15,7 @@ function DrawingToolbar() {
   useEffect(() => {
     if (mode !== 'line') return
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') mapApi.cancelDrawing()
+      if (e.key === 'Escape') { setMode(null); mapApi.setDrawingMode(null) }
       if (e.key === 'Enter') mapApi.completeDrawing()
     }
     document.addEventListener('keydown', onKeyDown)
