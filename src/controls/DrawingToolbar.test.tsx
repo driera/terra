@@ -71,7 +71,7 @@ describe('DrawingToolbar', () => {
     render(<DrawingToolbar />)
     await userEvent.click(screen.getByRole('button', { name: /draw line/i }))
     fireEvent.keyDown(document, { key: 'Escape' })
-    expect(mapApi.setDrawingMode).toHaveBeenLastCalledWith(null)
+    expect(mapApi.setDrawingMode).toHaveBeenLastCalledWith(Modes.VIEW)
     expect(mapApi.cancelDrawing).not.toHaveBeenCalled()
     expect(screen.getByRole('button', { name: /draw line/i })).toHaveAttribute('aria-pressed', 'false')
   })
