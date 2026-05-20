@@ -1,46 +1,48 @@
 .toolbar {
   position: absolute;
-  bottom: 1rem;
+  bottom: var(--space-4);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;
-  gap: 0.25rem;
+  gap: var(--space-1);
   z-index: 1;
 }
 
 .button {
-  padding: 0.375rem 0.75rem;
-  background: #ffffff;
-  border: 1px solid #d0d0d0;
-  border-radius: 4px;
+  padding: 0.375rem var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   line-height: 1;
 }
 
 .button:hover {
-  background: #f0f0f0;
+  background: var(--color-surface-hover);
 }
 
 .button:focus-visible {
-  outline: 2px solid #0066cc;
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid var(--color-accent);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .button[aria-pressed='true'] {
-  background: #0066cc;
-  color: #ffffff;
-  border-color: #0055aa;
+  background: var(--color-accent);
+  color: var(--color-surface);
+  border-color: var(--color-accent-dark);
 }
 
 .iconButton {
+  --control-size: 2rem;
+
   composes: button;
-  width: 2rem;
-  height: 2rem;
+  width: var(--control-size);
+  height: var(--control-size);
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: var(--font-size-base);
 }
