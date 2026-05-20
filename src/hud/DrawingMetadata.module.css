@@ -4,3 +4,7 @@
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
 }
+
+.muted {
+  color: #a0a0a0;
+}
