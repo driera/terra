@@ -53,7 +53,7 @@ Commit: `refactor(hud): move Coordinates into footer bar`
 
 ---
 
-### 3. Add DrawingMetadata component
+### [x] 3. Add DrawingMetadata component
 
 New component that shows line count and vertex count, derived from completed geometries in the drawing store.
 
