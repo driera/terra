@@ -1,8 +1,8 @@
 .coordinates {
-  --coord-value-width: 7ch;
+  --coord-value-width: 9ch;
 
   display: flex;
-  gap: 4px;
+  gap: var(--space-1);
   font-size: var(--font-size-sm);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -14,7 +14,7 @@
 }
 
 .label {
-  margin-right: 4px;
+  margin-right: var(--space-1);
 }
 
 .value {
