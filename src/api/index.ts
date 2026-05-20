@@ -37,5 +37,6 @@ export default mapApi
 export { usePointer, getPointer } from './pointer'
 export type { PointerState, PointerAttribute } from './pointer'
 
-export { useDrawing, getGeometry, setMode as setDrawingMode, cancel as cancelDrawing, complete as completeDrawing } from './drawing'
+export { useDrawing, getGeometry, setMode as setDrawingMode, cancel as cancelDrawing, complete as completeDrawing, Modes } from './drawing'
+export type { Mode } from './drawing'
 export type { GeometryState, GeometryAttribute } from './GeometryStore'

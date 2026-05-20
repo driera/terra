@@ -3,6 +3,7 @@ import { act, renderHook } from '@testing-library/react'
 import type maplibregl from 'maplibre-gl'
 import type GeoJSON from 'geojson'
 import * as drawing from './drawing'
+import { Modes } from './drawing'
 
 type MockSource = { setData: Mock<(data: unknown) => void> }
 
@@ -107,7 +108,7 @@ describe('drawing', () => {
     it('onClick in line mode appends vertex and updates terra-draft', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'click', 1, 2)
       expect(drawing.getGeometry().vertices).toEqual([[1, 2]])
     })
@@ -123,7 +124,7 @@ describe('drawing', () => {
     it('onMouseMove in line mode updates cursor in store', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'mousemove', 5, 6)
       expect(drawing.getGeometry().cursor).toEqual([5, 6])
     })
@@ -139,7 +140,7 @@ describe('drawing', () => {
     it('draft source receives empty FC when fewer than 2 coords', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'click', 1, 2)
       const data = getSourceData(map, 'terra-draft')
       expect(data.type).toBe('FeatureCollection')
@@ -149,7 +150,7 @@ describe('drawing', () => {
     it('draft source receives LineString Feature when >= 2 coords', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'mousemove', 2, 3)
       fireLngLat(map, 'click', 1, 2)
       const data = getSourceData(map, 'terra-draft')
@@ -163,7 +164,7 @@ describe('drawing', () => {
     it('click before style loads does not throw; data flushes after load', () => {
       const map = createMockMap(false)
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       expect(() => fireLngLat(map, 'click', 1, 2)).not.toThrow()
       const onceCall = map.once.mock.calls.find(([name]) => name === 'load')
       ;(onceCall![1] as () => void)()
@@ -186,7 +187,7 @@ describe('drawing', () => {
     it('complete with >= 2 vertices adds a Feature<LineString> and clears draft', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'click', 0, 0)
       fireLngLat(map, 'click', 1, 1)
       drawing.complete()
@@ -200,7 +201,7 @@ describe('drawing', () => {
     it('complete with fewer than 2 vertices is a no-op', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'click', 0, 0)
       drawing.complete()
       expect(drawing.getGeometry().geometries).toHaveLength(0)
@@ -210,7 +211,7 @@ describe('drawing', () => {
     it('cancel clears draft; geometries unchanged', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'click', 0, 0)
       fireLngLat(map, 'click', 1, 1)
       drawing.complete()
@@ -223,7 +224,7 @@ describe('drawing', () => {
     it('terra-features source is updated after complete', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'click', 0, 0)
       fireLngLat(map, 'click', 1, 1)
       drawing.complete()
@@ -234,7 +235,7 @@ describe('drawing', () => {
     it('terra-draft source is cleared after cancel', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'click', 0, 0)
       fireLngLat(map, 'mousemove', 1, 1)
       drawing.cancel()
@@ -245,14 +246,14 @@ describe('drawing', () => {
     it('setMode("line") sets the map canvas cursor to crosshair', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       expect(map._canvas.style.cursor).toBe('crosshair')
     })
 
     it('setMode(null) restores the default map canvas cursor', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       drawing.setMode(null)
       expect(map._canvas.style.cursor).toBe('')
     })
@@ -260,7 +261,7 @@ describe('drawing', () => {
     it('setMode(null) while drafting discards in-progress vertices and cursor', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'click', 0, 0)
       fireLngLat(map, 'mousemove', 1, 1)
       drawing.setMode(null)
@@ -272,11 +273,11 @@ describe('drawing', () => {
     it('setMode(null) while drafting clears terra-draft source and preserves geometries', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'click', 0, 0)
       fireLngLat(map, 'click', 1, 1)
       drawing.complete()
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       fireLngLat(map, 'click', 2, 2)
       drawing.setMode(null)
       const draft = getSourceData(map, 'terra-draft')
@@ -289,7 +290,7 @@ describe('drawing', () => {
     it('rerenders when vertices changes; not when only cursor changes', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       let renderCount = 0
       const { result } = renderHook(() => {
         renderCount++
@@ -306,7 +307,7 @@ describe('drawing', () => {
     it('unsubscribes from the store on unmount', () => {
       const map = createMockMap()
       drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode('line')
+      drawing.setMode(Modes.LINE)
       let renderCount = 0
       const { unmount } = renderHook(() => {
         renderCount++

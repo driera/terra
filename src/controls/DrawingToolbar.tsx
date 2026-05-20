@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react'
-import mapApi, { useDrawing } from '../api'
+import mapApi, { useDrawing, Modes } from '../api'
+import type { Mode } from '../api'
 import styles from './DrawingToolbar.module.css'
 
 function DrawingToolbar() {
-  const [mode, setMode] = useState<'line' | null>(null)
+  const [mode, setMode] = useState<Mode>(Modes.VIEW)
   const { vertices } = useDrawing(['vertices'])
 
   const toggleLine = () => {
-    const next = mode === 'line' ? null : 'line'
+    const next = mode === Modes.LINE ? Modes.VIEW : Modes.LINE
     setMode(next)
     mapApi.setDrawingMode(next)
   }
 
   useEffect(() => {
-    if (mode !== 'line') return
+    if (mode !== Modes.LINE) return
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { setMode(null); mapApi.setDrawingMode(null) }
+      if (e.key === 'Escape') { setMode(Modes.VIEW); mapApi.setDrawingMode(Modes.VIEW) }
       if (e.key === 'Enter') mapApi.completeDrawing()
     }
     document.addEventListener('keydown', onKeyDown)
@@ -27,13 +28,13 @@ function DrawingToolbar() {
       <button
         type="button"
         aria-label="Draw line"
-        aria-pressed={mode === 'line'}
+        aria-pressed={mode === Modes.LINE}
         className={styles.button}
         onClick={toggleLine}
       >
         Line
       </button>
-      {mode === 'line' && vertices.length > 0 && (
+      {mode === Modes.LINE && vertices.length > 0 && (
         <button
           type="button"
           aria-label="Done"

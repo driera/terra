@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import { act } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import mapApi, { useDrawing } from '../api'
+import mapApi, { useDrawing, Modes } from '../api'
 import type { GeometryState } from '../api'
 import DrawingToolbar from './DrawingToolbar'
 
@@ -39,7 +39,7 @@ describe('DrawingToolbar', () => {
     render(<DrawingToolbar />)
     await userEvent.click(screen.getByRole('button', { name: /draw line/i }))
     expect(screen.getByRole('button', { name: /draw line/i })).toHaveAttribute('aria-pressed', 'true')
-    expect(mapApi.setDrawingMode).toHaveBeenCalledWith('line')
+    expect(mapApi.setDrawingMode).toHaveBeenCalledWith(Modes.LINE)
   })
 
   it('clicking "Draw line" again toggles back and calls setDrawingMode(null)', async () => {

@@ -29,10 +29,13 @@ const FEATURES_LINE_LAYER: maplibregl.LayerSpecification = {
   },
 }
 
+export const Modes = { VIEW: null, LINE: 'line' } as const
+export type Mode = (typeof Modes)[keyof typeof Modes]
+
 const store = new GeometryStore()
 
 let _map: maplibregl.Map | null = null
-let _mode: 'line' | null = null
+let _mode: Mode = Modes.VIEW
 let _sourcesReady = false
 
 const _syncToMap = (): void => {
@@ -54,13 +57,13 @@ const _syncToMap = (): void => {
 }
 
 const onClick = (e: maplibregl.MapMouseEvent): void => {
-  if (_mode !== 'line') return
+  if (_mode !== Modes.LINE) return
   store.appendVertex([e.lngLat.lng, e.lngLat.lat])
   _syncToMap()
 }
 
 const onMouseMove = (e: maplibregl.MapMouseEvent): void => {
-  if (_mode !== 'line') return
+  if (_mode !== Modes.LINE) return
   store.setCursor([e.lngLat.lng, e.lngLat.lat])
   _syncToMap()
 }
@@ -92,16 +95,16 @@ export const destroy = (): void => {
   _map.off('mousemove', onMouseMove)
   _map.getCanvas().style.cursor = ''
   _map = null
-  _mode = null
+  _mode = Modes.VIEW
   _sourcesReady = false
   store.reset()
 }
 
-export const setMode = (mode: 'line' | null): void => {
-  const wasActive = _mode !== null
+export const setMode = (mode: Mode): void => {
+  const wasActive = _mode !== Modes.VIEW
   _mode = mode
-  if (_map) _map.getCanvas().style.cursor = mode === 'line' ? 'crosshair' : ''
-  if (wasActive && mode === null) cancel()
+  if (_map) _map.getCanvas().style.cursor = mode === Modes.LINE ? 'crosshair' : ''
+  if (wasActive && mode === Modes.VIEW) cancel()
 }
 
 export const complete = (): void => {
