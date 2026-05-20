@@ -17,7 +17,11 @@ const DrawingMetadata = () => {
   return (
     <>
       {hasCompleted && (
-        <span className={`${styles.metadata}${isDrawing ? ` ${styles.muted}` : ''}`}>
+        <span
+          className={`${styles.metadata}${isDrawing ? ` ${styles.muted}` : ''}`}
+          aria-live="polite"
+          aria-atomic="true"
+        >
           {lineCount} {lineCount === 1 ? 'line' : 'lines'} · {vertexCount} vertices
         </span>
       )}
