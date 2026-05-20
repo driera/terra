@@ -11,8 +11,12 @@ vi.mock('./controls/MapControls', () => ({
   default: () => <div data-testid="map-controls" />,
 }))
 
-vi.mock('./hud/Coordinates', () => ({
-  default: () => <div data-testid="coordinates" />,
+vi.mock('./controls/DrawingToolbar', () => ({
+  default: () => <div data-testid="drawing-toolbar" />,
+}))
+
+vi.mock('./hud/Footer', () => ({
+  default: () => <div data-testid="footer" />,
 }))
 
 expect.extend(toHaveNoViolations)
@@ -30,18 +34,25 @@ describe('App', () => {
     expect(screen.getByTestId('map-controls')).toBeInTheDocument()
   })
 
-  it('renders Coordinates', () => {
+  it('renders Footer', () => {
     render(<App />)
-    expect(screen.getByTestId('coordinates')).toBeInTheDocument()
+    expect(screen.getByTestId('footer')).toBeInTheDocument()
   })
 
-  it('renders MapCanvas, MapControls and Coordinates as siblings inside a layout wrapper', () => {
+  it('renders MapCanvas, MapControls and DrawingToolbar inside the map area', () => {
     render(<App />)
     const canvas = screen.getByTestId('map-canvas')
     const controls = screen.getByTestId('map-controls')
-    const coordinates = screen.getByTestId('coordinates')
+    const toolbar = screen.getByTestId('drawing-toolbar')
     expect(canvas.parentElement).toBe(controls.parentElement)
-    expect(canvas.parentElement).toBe(coordinates.parentElement)
+    expect(canvas.parentElement).toBe(toolbar.parentElement)
+  })
+
+  it('renders map area and footer as siblings', () => {
+    render(<App />)
+    const canvas = screen.getByTestId('map-canvas')
+    const footer = screen.getByTestId('footer')
+    expect(canvas.parentElement?.parentElement).toBe(footer.parentElement)
   })
 
   it('has no a11y violations', async () => {
