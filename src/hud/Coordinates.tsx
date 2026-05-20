@@ -9,9 +9,19 @@ const Coordinates = () => {
   if (!coordinates) return null
 
   const [lng, lat] = coordinates
-  const label = `${lat.toFixed(DECIMALS)}, ${lng.toFixed(DECIMALS)}`
 
-  return <div className={styles.coordinates}>{label}</div>
+  return (
+    <div className={styles.coordinates}>
+      <span className={styles.pair}>
+        <span className={styles.label}>lat:</span>
+        <span className={styles.value}>{lat.toFixed(DECIMALS)}</span>
+      </span>
+      <span className={styles.pair}>
+        <span className={styles.label}>lng:</span>
+        <span className={styles.value}>{lng.toFixed(DECIMALS)}</span>
+      </span>
+    </div>
+  )
 }
 
 export default Coordinates

@@ -67,13 +67,27 @@ describe('DrawingMetadata', () => {
     expect(screen.getByText(/5 vertices/)).toBeInTheDocument()
   })
 
-  it('shows "drawing…" indicator when a line is in progress alongside completed geometries', () => {
+  it('shows stats and "drawing…" as separate elements when drawing with completed geometries', () => {
     vi.mocked(useDrawing as Mock).mockReturnValue({
       geometries: [makeLine([[0, 0], [1, 1]])],
       vertices: [[2, 2], [3, 3]],
     })
     render(<DrawingMetadata />)
-    expect(screen.getByText(/drawing…/)).toBeInTheDocument()
+    expect(screen.getByText(/1 line/)).toBeInTheDocument()
+    expect(screen.getByText('drawing…')).toBeInTheDocument()
+    expect(screen.getByText(/1 line/)).not.toBe(screen.getByText('drawing…'))
+  })
+
+  it('mutes stats but not the drawing… label when drawing', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue({
+      geometries: [makeLine([[0, 0], [1, 1]])],
+      vertices: [[2, 2], [3, 3]],
+    })
+    render(<DrawingMetadata />)
+    const stats = screen.getByText(/1 line/)
+    const indicator = screen.getByText('drawing…')
+    expect(stats.className).toMatch(/muted/)
+    expect(indicator.className).not.toMatch(/muted/)
   })
 
   it('has no a11y violations when showing metadata', async () => {

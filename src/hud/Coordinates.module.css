@@ -1,5 +1,23 @@
 .coordinates {
-  padding: var(--space-1) var(--space-2);
+  --coord-value-width: 7ch;
+
+  display: flex;
+  gap: 4px;
   font-size: var(--font-size-sm);
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pair {
+  display: flex;
+  align-items: baseline;
+}
+
+.label {
+  margin-right: 4px;
+}
+
+.value {
+  display: inline-block;
+  width: var(--coord-value-width);
 }

@@ -21,18 +21,22 @@ describe('Coordinates', () => {
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('renders formatted "lat, lng" with 4 decimal places', () => {
+  it('renders lat and lng labels with values', () => {
     vi.mocked(usePointer).mockReturnValue({ coordinates: [2.1734, 41.3851] })
     render(<Coordinates />)
-    expect(screen.getByText('41.3851, 2.1734')).toBeInTheDocument()
+    expect(screen.getByText('lat:')).toBeInTheDocument()
+    expect(screen.getByText('lng:')).toBeInTheDocument()
+    expect(screen.getByText('41.3851')).toBeInTheDocument()
+    expect(screen.getByText('2.1734')).toBeInTheDocument()
   })
 
-  it('rounds coordinates to 4 decimal places', () => {
+  it('rounds values to 4 decimal places', () => {
     vi.mocked(usePointer).mockReturnValue({
       coordinates: [2.17345678, 41.38516789],
     })
     render(<Coordinates />)
-    expect(screen.getByText('41.3852, 2.1735')).toBeInTheDocument()
+    expect(screen.getByText('41.3852')).toBeInTheDocument()
+    expect(screen.getByText('2.1735')).toBeInTheDocument()
   })
 
   it('has no a11y violations when showing coordinates', async () => {
