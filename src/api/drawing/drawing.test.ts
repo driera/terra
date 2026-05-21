@@ -1,5 +1,4 @@
 import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
-import { act, renderHook } from '@testing-library/react'
 import type maplibregl from 'maplibre-gl'
 import type GeoJSON from 'geojson'
 import * as drawing from './drawing'
@@ -286,37 +285,4 @@ describe('drawing', () => {
     })
   })
 
-  describe('useDrawing', () => {
-    it('rerenders when vertices changes; not when only cursor changes', () => {
-      const map = createMockMap()
-      drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode(Modes.LINE)
-      let renderCount = 0
-      const { result } = renderHook(() => {
-        renderCount++
-        return drawing.useDrawing(['vertices'])
-      })
-      const before = renderCount
-      act(() => { fireLngLat(map, 'mousemove', 1, 1) })
-      expect(renderCount).toBe(before)
-      act(() => { fireLngLat(map, 'click', 1, 1) })
-      expect(renderCount).toBeGreaterThan(before)
-      expect(result.current.vertices).toHaveLength(1)
-    })
-
-    it('unsubscribes from the store on unmount', () => {
-      const map = createMockMap()
-      drawing.init(map as unknown as maplibregl.Map)
-      drawing.setMode(Modes.LINE)
-      let renderCount = 0
-      const { unmount } = renderHook(() => {
-        renderCount++
-        return drawing.useDrawing(['vertices'])
-      })
-      unmount()
-      const before = renderCount
-      act(() => { fireLngLat(map, 'click', 1, 1) })
-      expect(renderCount).toBe(before)
-    })
-  })
 })

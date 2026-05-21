@@ -1,10 +1,9 @@
-import { useMemo, useSyncExternalStore } from 'react'
 import type maplibregl from 'maplibre-gl'
 import type GeoJSON from 'geojson'
-import { GeometryStore } from './store'
-import type { GeometryAttribute, GeometryState } from './store'
+import { geometryStore as store } from './store'
+import type { GeometryState } from './store'
 
-export type { GeometryState, GeometryAttribute }
+export type { GeometryState }
 
 const EMPTY_COLLECTION: GeoJSON.FeatureCollection = { type: 'FeatureCollection', features: [] }
 
@@ -31,8 +30,6 @@ const FEATURES_LINE_LAYER: maplibregl.LayerSpecification = {
 
 export const Modes = { VIEW: null, LINE: 'line' } as const
 export type Mode = (typeof Modes)[keyof typeof Modes]
-
-const store = new GeometryStore()
 
 let _map: maplibregl.Map | null = null
 let _mode: Mode = Modes.VIEW
@@ -126,20 +123,3 @@ export const cancel = (): void => {
 }
 
 export const getGeometry = (): GeometryState => store.get()
-
-export const useDrawing = (keys: GeometryAttribute[]): GeometryState => {
-  const keysKey = keys.join(',')
-
-  const subscribe = useMemo(
-    () => (notify: () => void) =>
-      store.subscribe((_, changedKeys) => {
-        if (keys.length === 0 || changedKeys.some((k) => keys.includes(k))) {
-          notify()
-        }
-      }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [keysKey]
-  )
-
-  return useSyncExternalStore(subscribe, () => store.get())
-}

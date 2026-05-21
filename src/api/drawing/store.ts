@@ -51,3 +51,5 @@ export class GeometryStore {
     this.store.set({ geometries: [...geometries, feature] })
   }
 }
+
+export const geometryStore = new GeometryStore()

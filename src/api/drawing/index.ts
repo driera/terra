@@ -1,2 +1,5 @@
-export { init, destroy, setMode, complete, cancel, getGeometry, useDrawing, Modes } from './drawing'
-export type { Mode, GeometryState, GeometryAttribute } from './drawing'
+export { init, destroy, setMode, complete, cancel, getGeometry, Modes } from './drawing'
+export type { Mode, GeometryState } from './drawing'
+export type { GeometryAttribute } from './store'
+export { useDrawing } from './useDrawing'
+export type { DrawingState } from './useDrawing'
