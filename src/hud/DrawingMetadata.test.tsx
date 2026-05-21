@@ -6,7 +6,10 @@ import { useDrawing } from '../api'
 import type { DrawingState } from '../api'
 import DrawingMetadata from './DrawingMetadata'
 
-vi.mock('../api')
+vi.mock('../api', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../api')>()
+  return { ...actual, useDrawing: vi.fn() }
+})
 
 expect.extend(toHaveNoViolations)
 
@@ -92,9 +95,20 @@ describe('DrawingMetadata', () => {
     expect(screen.getByText('700 m').className).not.toMatch(/muted/)
   })
 
-  it('has no a11y violations when showing metadata', async () => {
+  it('has no a11y violations when showing completed metadata', async () => {
     vi.mocked(useDrawing as Mock).mockReturnValue(
       makeState({ hasCompleted: true, lineCount: 1, vertexCount: 2, distance: 340 })
+    )
+    const { container } = render(<DrawingMetadata />)
+    await act(async () => {
+      const results = await axe(container)
+      expect(results).toHaveNoViolations()
+    })
+  })
+
+  it('has no a11y violations when drawing with only the distance span visible', async () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue(
+      makeState({ isDrawing: true, distance: 340 })
     )
     const { container } = render(<DrawingMetadata />)
     await act(async () => {

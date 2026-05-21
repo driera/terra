@@ -1,5 +1,4 @@
-import { useDrawing } from '../api'
-import { formatDistance } from '../api/drawing/distance'
+import { useDrawing, formatDistance } from '../api'
 import styles from './DrawingMetadata.module.css'
 
 const DrawingMetadata = () => {
