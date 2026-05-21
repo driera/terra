@@ -5,7 +5,7 @@ import styles from './DrawingToolbar.module.css'
 
 function DrawingToolbar() {
   const [mode, setMode] = useState<Mode>(Modes.VIEW)
-  const { vertices } = useDrawing(['vertices'])
+  const { isDrawing } = useDrawing(['vertices'])
 
   const toggleLine = () => {
     const next = mode === Modes.LINE ? Modes.VIEW : Modes.LINE
@@ -34,7 +34,7 @@ function DrawingToolbar() {
       >
         Line
       </button>
-      {mode === Modes.LINE && vertices.length > 0 && (
+      {mode === Modes.LINE && isDrawing && (
         <button
           type="button"
           aria-label="Done"

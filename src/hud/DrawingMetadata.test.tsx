@@ -3,6 +3,7 @@ import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Mock } from 'vitest'
 import { useDrawing } from '../api'
+import type { DrawingState } from '../api'
 import DrawingMetadata from './DrawingMetadata'
 
 vi.mock('../api')
@@ -11,10 +12,13 @@ expect.extend(toHaveNoViolations)
 
 const axe = configureAxe()
 
-const makeLine = (coords: [number, number][]): GeoJSON.Feature<GeoJSON.LineString> => ({
-  type: 'Feature',
-  geometry: { type: 'LineString', coordinates: coords },
-  properties: {},
+const makeState = (overrides: Partial<DrawingState> = {}): DrawingState => ({
+  isDrawing: false,
+  hasCompleted: false,
+  lineCount: 0,
+  vertexCount: 0,
+  distance: 0,
+  ...overrides,
 })
 
 describe('DrawingMetadata', () => {
@@ -22,79 +26,76 @@ describe('DrawingMetadata', () => {
     vi.mocked(useDrawing as Mock).mockReset()
   })
 
-  it('renders nothing when geometries and vertices are empty', () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue({ geometries: [], vertices: [] })
+  it('renders nothing when there is no drawing activity', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue(makeState())
     const { container } = render(<DrawingMetadata />)
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('shows "drawing…" when vertices exist but no completed geometries', () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue({
-      geometries: [],
-      vertices: [[0, 0], [1, 1]],
-    })
+  it('renders only distance when drawing with no completed geometries', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue(
+      makeState({ isDrawing: true, distance: 340 })
+    )
     render(<DrawingMetadata />)
-    expect(screen.getByText('drawing…')).toBeInTheDocument()
+    expect(screen.getByText('340 m')).toBeInTheDocument()
+    expect(screen.queryByText(/line/)).toBeNull()
   })
 
-  it('shows "1 line" when one geometry is present', () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue({
-      geometries: [makeLine([[0, 0], [1, 1]])],
-      vertices: [],
-    })
+  it('distance span is not muted when drawing with no completed geometries', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue(
+      makeState({ isDrawing: true, distance: 340 })
+    )
+    render(<DrawingMetadata />)
+    expect(screen.getByText('340 m').className).not.toMatch(/muted/)
+  })
+
+  it('renders lines+vertices and distance when completed and not drawing', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue(
+      makeState({ hasCompleted: true, lineCount: 1, vertexCount: 5, distance: 1500 })
+    )
     render(<DrawingMetadata />)
     expect(screen.getByText(/1 line/)).toBeInTheDocument()
+    expect(screen.getByText(/5 vertices/)).toBeInTheDocument()
+    expect(screen.getByText('1500 m')).toBeInTheDocument()
   })
 
-  it('shows plural "lines" when more than one geometry is present', () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue({
-      geometries: [makeLine([[0, 0], [1, 1]]), makeLine([[2, 2], [3, 3], [4, 4]])],
-      vertices: [],
-    })
+  it('shows "lines" plural when lineCount > 1', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue(
+      makeState({ hasCompleted: true, lineCount: 2, vertexCount: 4, distance: 200 })
+    )
     render(<DrawingMetadata />)
     expect(screen.getByText(/2 lines/)).toBeInTheDocument()
   })
 
-  it('shows the total vertex count across all geometries', () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue({
-      geometries: [
-        makeLine([[0, 0], [1, 1], [2, 2]]),
-        makeLine([[3, 3], [4, 4]]),
-      ],
-      vertices: [],
-    })
+  it('neither span is muted when completed and not drawing', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue(
+      makeState({ hasCompleted: true, lineCount: 1, vertexCount: 2, distance: 500 })
+    )
     render(<DrawingMetadata />)
-    expect(screen.getByText(/5 vertices/)).toBeInTheDocument()
+    expect(screen.getByText(/1 line/).className).not.toMatch(/muted/)
+    expect(screen.getByText('500 m').className).not.toMatch(/muted/)
   })
 
-  it('shows stats and "drawing…" as separate elements when drawing with completed geometries', () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue({
-      geometries: [makeLine([[0, 0], [1, 1]])],
-      vertices: [[2, 2], [3, 3]],
-    })
+  it('stats span is muted when drawing with completed geometries', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue(
+      makeState({ isDrawing: true, hasCompleted: true, lineCount: 1, vertexCount: 2, distance: 700 })
+    )
     render(<DrawingMetadata />)
-    expect(screen.getByText(/1 line/)).toBeInTheDocument()
-    expect(screen.getByText('drawing…')).toBeInTheDocument()
-    expect(screen.getByText(/1 line/)).not.toBe(screen.getByText('drawing…'))
+    expect(screen.getByText(/1 line/).className).toMatch(/muted/)
   })
 
-  it('mutes stats but not the drawing… label when drawing', () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue({
-      geometries: [makeLine([[0, 0], [1, 1]])],
-      vertices: [[2, 2], [3, 3]],
-    })
+  it('distance span is NOT muted when drawing with completed geometries', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue(
+      makeState({ isDrawing: true, hasCompleted: true, lineCount: 1, vertexCount: 2, distance: 700 })
+    )
     render(<DrawingMetadata />)
-    const stats = screen.getByText(/1 line/)
-    const indicator = screen.getByText('drawing…')
-    expect(stats.className).toMatch(/muted/)
-    expect(indicator.className).not.toMatch(/muted/)
+    expect(screen.getByText('700 m').className).not.toMatch(/muted/)
   })
 
   it('has no a11y violations when showing metadata', async () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue({
-      geometries: [makeLine([[0, 0], [1, 1]])],
-      vertices: [],
-    })
+    vi.mocked(useDrawing as Mock).mockReturnValue(
+      makeState({ hasCompleted: true, lineCount: 1, vertexCount: 2, distance: 340 })
+    )
     const { container } = render(<DrawingMetadata />)
     await act(async () => {
       const results = await axe(container)

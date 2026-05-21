@@ -4,13 +4,13 @@ import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import { act } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import mapApi, { useDrawing, Modes } from '../api'
-import type { GeometryState } from '../api'
+import type { DrawingState } from '../api'
 import DrawingToolbar from './DrawingToolbar'
 
 vi.mock('../api')
 
-const emptyState: GeometryState = { vertices: [], cursor: null, geometries: [] }
-const withVertex: GeometryState = { vertices: [[0, 0]], cursor: null, geometries: [] }
+const emptyState: DrawingState = { isDrawing: false, hasCompleted: false, lineCount: 0, vertexCount: 0, distance: 0 }
+const withVertex: DrawingState = { isDrawing: true, hasCompleted: false, lineCount: 0, vertexCount: 0, distance: 0 }
 
 expect.extend(toHaveNoViolations)
 
