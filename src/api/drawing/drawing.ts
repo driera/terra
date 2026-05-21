@@ -1,8 +1,8 @@
 import { useMemo, useSyncExternalStore } from 'react'
 import type maplibregl from 'maplibre-gl'
 import type GeoJSON from 'geojson'
-import { GeometryStore } from './GeometryStore'
-import type { GeometryAttribute, GeometryState } from './GeometryStore'
+import { GeometryStore } from './store'
+import type { GeometryAttribute, GeometryState } from './store'
 
 export type { GeometryState, GeometryAttribute }
 

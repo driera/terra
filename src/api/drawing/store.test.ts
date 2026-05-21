@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import type GeoJSON from 'geojson'
-import { GeometryStore } from './GeometryStore'
-import type { TerraGeometry } from './GeometryStore'
+import { GeometryStore } from './store'
+import type { TerraGeometry } from './store'
 
 function makeStore() {
   return new GeometryStore()

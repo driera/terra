@@ -39,4 +39,4 @@ export type { PointerState, PointerAttribute } from './pointer'
 
 export { useDrawing, getGeometry, setMode as setDrawingMode, cancel as cancelDrawing, complete as completeDrawing, Modes } from './drawing'
 export type { Mode } from './drawing'
-export type { GeometryState, GeometryAttribute } from './GeometryStore'
+export type { GeometryState, GeometryAttribute } from './drawing'
