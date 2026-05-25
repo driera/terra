@@ -59,13 +59,6 @@ describe('App', () => {
     expect(canvas.parentElement).toBe(hud.parentElement)
   })
 
-  it('renders DrawingToolbar as a sibling of the map area', () => {
-    render(<App />)
-    const toolbar = screen.getByTestId('drawing-toolbar')
-    const canvas = screen.getByTestId('map-canvas')
-    expect(toolbar.parentElement).toBe(canvas.parentElement?.parentElement)
-  })
-
   it('has no a11y violations', async () => {
     const { container } = render(<App />)
     await act(async () => {

@@ -5,6 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/terra/' : '/',
   plugins: [react()],
+  ...(mode === 'test' && {
+    define: { 'import.meta.env.VITE_MAPTILER_API_KEY': '"test-key"' },
+  }),
   test: {
     environment: 'jsdom',
     globals: true,
