@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { PenTool, Check } from 'lucide-react'
 import mapApi, { useDrawing, Modes } from '../api'
 import type { Mode } from '../api'
 import ToolButton from './ToolButton'
@@ -27,11 +28,11 @@ function DrawingToolbar() {
   return (
     <div className={styles.toolbar}>
       <ToolButton aria-label="Draw line" pressed={mode === Modes.LINE} onClick={toggleLine}>
-        Line
+        <PenTool size={16} />
       </ToolButton>
       {mode === Modes.LINE && isDrawing && (
         <ToolButton aria-label="Done" onClick={() => mapApi.completeDrawing()}>
-          ✓
+          <Check size={16} />
         </ToolButton>
       )}
     </div>
