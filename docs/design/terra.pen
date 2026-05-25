@@ -19,13 +19,13 @@
           "name": "header",
           "width": "fill_container",
           "height": 52,
-          "fill": "$color-neutral-700",
+          "fill": "$color-neutral-800",
           "stroke": {
             "align": "inside",
             "thickness": {
               "bottom": 1
             },
-            "fill": "$color-neutral-600"
+            "fill": "$color-neutral-700"
           },
           "padding": [
             0,
@@ -56,7 +56,7 @@
               "type": "ref",
               "ref": "NxQqA",
               "name": "search",
-              "fill": "$color-neutral-600"
+              "fill": "$color-neutral-700"
             },
             {
               "type": "frame",
@@ -109,7 +109,7 @@
                   "name": "avatar",
                   "width": 28,
                   "height": 28,
-                  "fill": "$color-neutral-600",
+                  "fill": "$color-neutral-700",
                   "cornerRadius": "$radius-pill",
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -142,13 +142,13 @@
               "name": "toolbar",
               "width": 56,
               "height": 848,
-              "fill": "$color-neutral-700",
+              "fill": "$color-neutral-800",
               "stroke": {
                 "align": "inside",
                 "thickness": {
                   "right": 1
                 },
-                "fill": "$color-neutral-600"
+                "fill": "$color-neutral-700"
               },
               "layout": "vertical",
               "gap": "$space-3",
@@ -613,7 +613,7 @@
                       "x": 340,
                       "y": 315,
                       "name": "hud-distance",
-                      "fill": "$color-neutral-700",
+                      "fill": "$color-neutral-800",
                       "cornerRadius": "$radius-s",
                       "gap": "$space-2",
                       "padding": [
@@ -639,11 +639,11 @@
                       "x": 405,
                       "y": 160,
                       "name": "hud-snap",
-                      "fill": "$color-neutral-700",
+                      "fill": "$color-neutral-800",
                       "cornerRadius": "$radius-s",
                       "stroke": {
                         "thickness": 1,
-                        "fill": "$color-neutral-600"
+                        "fill": "$color-neutral-700"
                       },
                       "gap": "$space-2",
                       "padding": [
@@ -664,7 +664,7 @@
                         {
                           "type": "text",
                           "id": "r91rlT",
-                          "fill": "$color-neutral-300",
+                          "fill": "$color-neutral-400",
                           "content": "Snap ON",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 10,
@@ -871,13 +871,13 @@
                   "name": "panel",
                   "width": 340,
                   "height": "fill_container",
-                  "fill": "$color-neutral-700",
+                  "fill": "$color-neutral-800",
                   "stroke": {
                     "align": "inside",
                     "thickness": {
                       "left": 1
                     },
-                    "fill": "$color-neutral-600"
+                    "fill": "$color-neutral-700"
                   },
                   "layout": "vertical",
                   "children": [
@@ -915,7 +915,7 @@
                                 "bFd5D": {
                                   "stroke": {
                                     "thickness": 1,
-                                    "fill": "$color-neutral-500"
+                                    "fill": "$color-neutral-600"
                                   }
                                 },
                                 "bFd5D/uTf85": {
@@ -941,7 +941,7 @@
                                 "bFd5D": {
                                   "stroke": {
                                     "thickness": 1,
-                                    "fill": "$color-neutral-600"
+                                    "fill": "$color-neutral-700"
                                   }
                                 },
                                 "bFd5D/uTf85": {
@@ -966,10 +966,10 @@
                                   "enabled": false
                                 },
                                 "bFd5D": {
-                                  "fill": "$color-neutral-700",
+                                  "fill": "$color-neutral-800",
                                   "stroke": {
                                     "thickness": 1,
-                                    "fill": "$color-neutral-600"
+                                    "fill": "$color-neutral-700"
                                   }
                                 },
                                 "bFd5D/uTf85": {
@@ -1113,7 +1113,7 @@
                                           "type": "text",
                                           "id": "YFbov",
                                           "name": "label",
-                                          "fill": "$color-neutral-300",
+                                          "fill": "$color-neutral-400",
                                           "content": "Perimeter",
                                           "fontFamily": "Roboto",
                                           "fontSize": 9,
@@ -1144,7 +1144,7 @@
                                           "type": "text",
                                           "id": "soLW5",
                                           "name": "label",
-                                          "fill": "$color-neutral-300",
+                                          "fill": "$color-neutral-400",
                                           "content": "Area",
                                           "fontFamily": "Roboto",
                                           "fontSize": 9,
@@ -1183,7 +1183,7 @@
                                           "type": "text",
                                           "id": "cPJ4D",
                                           "name": "label",
-                                          "fill": "$color-neutral-300",
+                                          "fill": "$color-neutral-400",
                                           "content": "Vertices",
                                           "fontFamily": "Roboto",
                                           "fontSize": 9,
@@ -1214,7 +1214,7 @@
                                           "type": "text",
                                           "id": "HjA2A",
                                           "name": "label",
-                                          "fill": "$color-neutral-300",
+                                          "fill": "$color-neutral-400",
                                           "content": "Bounding Box",
                                           "fontFamily": "Roboto",
                                           "fontSize": 9,
@@ -1278,7 +1278,7 @@
                                 {
                                   "type": "text",
                                   "id": "MZWlh",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "↑ 312m   ↓ 48m",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 9,
@@ -1305,7 +1305,7 @@
                                     {
                                       "type": "text",
                                       "id": "BREhv",
-                                      "fill": "$color-neutral-300",
+                                      "fill": "$color-neutral-400",
                                       "content": "312m",
                                       "fontFamily": "Roboto Mono",
                                       "fontSize": 8,
@@ -1314,7 +1314,7 @@
                                     {
                                       "type": "text",
                                       "id": "N3BaIS",
-                                      "fill": "$color-neutral-300",
+                                      "fill": "$color-neutral-400",
                                       "content": "234m",
                                       "fontFamily": "Roboto Mono",
                                       "fontSize": 8,
@@ -1323,7 +1323,7 @@
                                     {
                                       "type": "text",
                                       "id": "ciNmD",
-                                      "fill": "$color-neutral-300",
+                                      "fill": "$color-neutral-400",
                                       "content": "156m",
                                       "fontFamily": "Roboto Mono",
                                       "fontSize": 8,
@@ -1332,7 +1332,7 @@
                                     {
                                       "type": "text",
                                       "id": "vbXCX",
-                                      "fill": "$color-neutral-300",
+                                      "fill": "$color-neutral-400",
                                       "content": "78m",
                                       "fontFamily": "Roboto Mono",
                                       "fontSize": 8,
@@ -1341,7 +1341,7 @@
                                     {
                                       "type": "text",
                                       "id": "b2I4F",
-                                      "fill": "$color-neutral-300",
+                                      "fill": "$color-neutral-400",
                                       "content": "0m",
                                       "fontFamily": "Roboto Mono",
                                       "fontSize": 8,
@@ -1487,7 +1487,7 @@
                                       "cornerRadius": "$radius-s",
                                       "stroke": {
                                         "thickness": 1,
-                                        "fill": "$color-neutral-700"
+                                        "fill": "$color-neutral-800"
                                       },
                                       "gap": "$space-2",
                                       "padding": [
@@ -1507,7 +1507,7 @@
                                         {
                                           "type": "text",
                                           "id": "CHAgn",
-                                          "fill": "$color-neutral-300",
+                                          "fill": "$color-neutral-400",
                                           "content": "@ 2.1km",
                                           "fontFamily": "Roboto Mono",
                                           "fontSize": 9,
@@ -1535,7 +1535,7 @@
                                 {
                                   "type": "text",
                                   "id": "sW2nA",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "0",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -1544,7 +1544,7 @@
                                 {
                                   "type": "text",
                                   "id": "OvwHS",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "1km",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -1553,7 +1553,7 @@
                                 {
                                   "type": "text",
                                   "id": "eOg7E",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "2km",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -1562,7 +1562,7 @@
                                 {
                                   "type": "text",
                                   "id": "Z0ZrH",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "3km",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -1571,7 +1571,7 @@
                                 {
                                   "type": "text",
                                   "id": "sLpIc",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "4km",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -1580,7 +1580,7 @@
                                 {
                                   "type": "text",
                                   "id": "Y83tGN",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "4.7",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -1851,7 +1851,7 @@
       "clip": true,
       "width": 1440,
       "height": 900,
-      "fill": "$color-neutral-700",
+      "fill": "$color-neutral-800",
       "layout": "vertical",
       "children": [
         {
@@ -1863,13 +1863,13 @@
           },
           "width": "fill_container",
           "height": 52,
-          "fill": "$color-neutral-700",
+          "fill": "$color-neutral-800",
           "stroke": {
             "align": "inside",
             "thickness": {
               "bottom": 1
             },
-            "fill": "$color-neutral-600"
+            "fill": "$color-neutral-700"
           },
           "padding": [
             0,
@@ -1916,12 +1916,12 @@
               "name": "search",
               "width": 280,
               "height": 32,
-              "fill": "$color-neutral-600",
+              "fill": "$color-neutral-700",
               "cornerRadius": "$radius-pill",
               "stroke": {
                 "align": "inside",
                 "thickness": 1,
-                "fill": "$color-neutral-500"
+                "fill": "$color-neutral-600"
               },
               "gap": "$space-3",
               "padding": [
@@ -1943,7 +1943,7 @@
                   "type": "text",
                   "id": "kK9Us",
                   "name": "placeholder",
-                  "fill": "$color-neutral-300",
+                  "fill": "$color-neutral-400",
                   "content": "Search location...",
                   "fontFamily": "Roboto",
                   "fontSize": 13,
@@ -2013,7 +2013,7 @@
                   "name": "avatar",
                   "width": 28,
                   "height": 28,
-                  "fill": "$color-neutral-600",
+                  "fill": "$color-neutral-700",
                   "cornerRadius": "$radius-pill",
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -2049,13 +2049,13 @@
               },
               "width": 56,
               "height": 848,
-              "fill": "$color-neutral-700",
+              "fill": "$color-neutral-800",
               "stroke": {
                 "align": "inside",
                 "thickness": {
                   "right": 1
                 },
-                "fill": "$color-neutral-600"
+                "fill": "$color-neutral-700"
               },
               "layout": "vertical",
               "gap": "$space-3",
@@ -2176,7 +2176,7 @@
                       "height": 20,
                       "iconFontName": "settings",
                       "iconFontFamily": "lucide",
-                      "fill": "$color-neutral-300"
+                      "fill": "$color-neutral-400"
                     }
                   ]
                 }
@@ -2196,7 +2196,7 @@
                   "clip": true,
                   "width": "fill_container",
                   "height": "fill_container",
-                  "fill": "$color-white",
+                  "fill": "$color-neutral-700",
                   "layout": "none",
                   "children": [
                     {
@@ -2409,7 +2409,7 @@
                       "x": 340,
                       "y": 315,
                       "name": "hud-distance",
-                      "fill": "$color-neutral-600",
+                      "fill": "$color-neutral-700",
                       "cornerRadius": "$radius-s",
                       "gap": "$space-2",
                       "padding": [
@@ -2432,15 +2432,15 @@
                     {
                       "type": "frame",
                       "id": "J9L4Ug",
-                      "x": 378,
+                      "x": 351.5,
                       "y": 20,
                       "name": "hud-draw-mode",
-                      "fill": "$color-neutral-600",
+                      "fill": "$color-neutral-800",
                       "cornerRadius": "$radius-m",
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
-                        "fill": "$color-primary"
+                        "fill": "$color-primary-alpha"
                       },
                       "gap": "$space-3",
                       "padding": [
@@ -2473,7 +2473,7 @@
                       "x": 405,
                       "y": 160,
                       "name": "hud-snap",
-                      "fill": "$color-neutral-600",
+                      "fill": "$color-neutral-700",
                       "cornerRadius": "$radius-s",
                       "stroke": {
                         "thickness": 1,
@@ -2512,7 +2512,7 @@
                       "x": 686,
                       "y": 353,
                       "name": "hud-segments",
-                      "fill": "$color-neutral-600",
+                      "fill": "$color-neutral-700",
                       "cornerRadius": "$radius-s",
                       "stroke": {
                         "thickness": 1,
@@ -2748,7 +2748,7 @@
                           "stroke": {
                             "align": "inside",
                             "thickness": 2,
-                            "fill": "$color-neutral-400"
+                            "fill": "$color-neutral-500"
                           }
                         },
                         {
@@ -2818,13 +2818,18 @@
                       "type": "ref",
                       "ref": "K317Rc",
                       "x": 1000,
-                      "y": 360
+                      "y": 374,
+                      "stroke": {
+                        "align": "outside",
+                        "thickness": 1,
+                        "fill": "$color-neutral-700"
+                      }
                     },
                     {
                       "id": "PgVNM",
                       "type": "ref",
                       "ref": "l9akC",
-                      "x": 397.75,
+                      "x": 371,
                       "y": 792.5
                     }
                   ]
@@ -2835,13 +2840,13 @@
                   "name": "panel",
                   "width": 340,
                   "height": "fill_container",
-                  "fill": "$color-neutral-700",
+                  "fill": "$color-neutral-800",
                   "stroke": {
                     "align": "inside",
                     "thickness": {
                       "left": 1
                     },
-                    "fill": "$color-neutral-500"
+                    "fill": "$color-neutral-600"
                   },
                   "layout": "vertical",
                   "children": [
@@ -2880,7 +2885,7 @@
                                   "fill": [],
                                   "stroke": {
                                     "thickness": 1,
-                                    "fill": "$color-neutral-400"
+                                    "fill": "$color-neutral-500"
                                   }
                                 },
                                 "bFd5D/uTf85": {
@@ -2907,7 +2912,7 @@
                                   "fill": [],
                                   "stroke": {
                                     "thickness": 1,
-                                    "fill": "$color-neutral-400"
+                                    "fill": "$color-neutral-500"
                                   }
                                 },
                                 "bFd5D/uTf85": {
@@ -2935,7 +2940,7 @@
                                   "fill": [],
                                   "stroke": {
                                     "thickness": 1,
-                                    "fill": "$color-neutral-400"
+                                    "fill": "$color-neutral-500"
                                   }
                                 },
                                 "bFd5D/uTf85": {
@@ -2953,14 +2958,14 @@
                       "name": "panel-divider",
                       "width": "fill_container",
                       "height": 10,
-                      "fill": "$color-neutral-800",
+                      "fill": "$color-neutral-900",
                       "stroke": {
                         "align": "inside",
                         "thickness": {
                           "top": 1,
                           "bottom": 1
                         },
-                        "fill": "$color-neutral-500"
+                        "fill": "$color-neutral-600"
                       },
                       "justifyContent": "center",
                       "alignItems": "center",
@@ -2969,7 +2974,7 @@
                           "type": "rectangle",
                           "cornerRadius": 4,
                           "id": "xCZ5U",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "width": 28,
                           "height": 2
                         }
@@ -2994,7 +2999,7 @@
                             "thickness": {
                               "bottom": 1
                             },
-                            "fill": "$color-neutral-500"
+                            "fill": "$color-neutral-600"
                           },
                           "padding": [
                             0,
@@ -3087,7 +3092,7 @@
                                           "type": "text",
                                           "id": "J5akx2",
                                           "name": "label",
-                                          "fill": "$color-neutral-300",
+                                          "fill": "$color-neutral-400",
                                           "content": "Perimeter",
                                           "fontFamily": "Roboto",
                                           "fontSize": 9,
@@ -3118,7 +3123,7 @@
                                           "type": "text",
                                           "id": "G9cfz4",
                                           "name": "label",
-                                          "fill": "$color-neutral-300",
+                                          "fill": "$color-neutral-400",
                                           "content": "Area",
                                           "fontFamily": "Roboto",
                                           "fontSize": 9,
@@ -3157,7 +3162,7 @@
                                           "type": "text",
                                           "id": "i04eh",
                                           "name": "label",
-                                          "fill": "$color-neutral-300",
+                                          "fill": "$color-neutral-400",
                                           "content": "Vertices",
                                           "fontFamily": "Roboto",
                                           "fontSize": 9,
@@ -3188,7 +3193,7 @@
                                           "type": "text",
                                           "id": "ckaY7",
                                           "name": "label",
-                                          "fill": "$color-neutral-300",
+                                          "fill": "$color-neutral-400",
                                           "content": "Bounding Box",
                                           "fontFamily": "Roboto",
                                           "fontSize": 9,
@@ -3282,7 +3287,7 @@
                                     {
                                       "type": "text",
                                       "id": "phpgz",
-                                      "fill": "$color-neutral-300",
+                                      "fill": "$color-neutral-400",
                                       "content": "312m",
                                       "fontFamily": "Roboto Mono",
                                       "fontSize": 8,
@@ -3291,7 +3296,7 @@
                                     {
                                       "type": "text",
                                       "id": "rwI1R",
-                                      "fill": "$color-neutral-300",
+                                      "fill": "$color-neutral-400",
                                       "content": "234m",
                                       "fontFamily": "Roboto Mono",
                                       "fontSize": 8,
@@ -3300,7 +3305,7 @@
                                     {
                                       "type": "text",
                                       "id": "NZuhq",
-                                      "fill": "$color-neutral-300",
+                                      "fill": "$color-neutral-400",
                                       "content": "156m",
                                       "fontFamily": "Roboto Mono",
                                       "fontSize": 8,
@@ -3309,7 +3314,7 @@
                                     {
                                       "type": "text",
                                       "id": "ZSmTI",
-                                      "fill": "$color-neutral-300",
+                                      "fill": "$color-neutral-400",
                                       "content": "78m",
                                       "fontFamily": "Roboto Mono",
                                       "fontSize": 8,
@@ -3318,7 +3323,7 @@
                                     {
                                       "type": "text",
                                       "id": "YnmvD",
-                                      "fill": "$color-neutral-300",
+                                      "fill": "$color-neutral-400",
                                       "content": "0m",
                                       "fontFamily": "Roboto Mono",
                                       "fontSize": 8,
@@ -3333,7 +3338,7 @@
                                   "clip": true,
                                   "width": "fill_container",
                                   "height": 120,
-                                  "fill": "$color-neutral-500",
+                                  "fill": "$color-neutral-600",
                                   "cornerRadius": "$radius-s",
                                   "layout": "none",
                                   "children": [
@@ -3464,7 +3469,7 @@
                                       "cornerRadius": "$radius-s",
                                       "stroke": {
                                         "thickness": 1,
-                                        "fill": "$color-neutral-500"
+                                        "fill": "$color-neutral-600"
                                       },
                                       "gap": "$space-2",
                                       "padding": [
@@ -3512,7 +3517,7 @@
                                 {
                                   "type": "text",
                                   "id": "R8aF3k",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "0",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -3521,7 +3526,7 @@
                                 {
                                   "type": "text",
                                   "id": "e38m8",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "1km",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -3530,7 +3535,7 @@
                                 {
                                   "type": "text",
                                   "id": "USU6L",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "2km",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -3539,7 +3544,7 @@
                                 {
                                   "type": "text",
                                   "id": "nBDeD",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "3km",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -3548,7 +3553,7 @@
                                 {
                                   "type": "text",
                                   "id": "Mn9fw",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "4km",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -3557,7 +3562,7 @@
                                 {
                                   "type": "text",
                                   "id": "Q0e6RC",
-                                  "fill": "$color-neutral-300",
+                                  "fill": "$color-neutral-400",
                                   "content": "4.7",
                                   "fontFamily": "Roboto Mono",
                                   "fontSize": 8,
@@ -3765,7 +3770,7 @@
                             "thickness": {
                               "top": 1
                             },
-                            "fill": "$color-neutral-500"
+                            "fill": "$color-neutral-600"
                           },
                           "gap": 8,
                           "padding": [
@@ -3991,14 +3996,14 @@
                 },
                 {
                   "type": "frame",
-                  "id": "wdjpO",
+                  "id": "R4fh7",
                   "width": 72,
                   "layout": "vertical",
                   "gap": 6,
                   "children": [
                     {
                       "type": "frame",
-                      "id": "GYlpR",
+                      "id": "d8eCz",
                       "width": 72,
                       "height": 48,
                       "fill": "$color-neutral-300",
@@ -4010,9 +4015,48 @@
                     },
                     {
                       "type": "text",
-                      "id": "qhtbB",
+                      "id": "f8Tnh",
                       "fill": "#a0a6b2",
                       "content": "neutral-300",
+                      "fontFamily": "Roboto Mono",
+                      "fontSize": 9,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "F1D6B",
+                      "fill": "#6e7280",
+                      "content": "#818898",
+                      "fontFamily": "Roboto Mono",
+                      "fontSize": 8,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wdjpO",
+                  "width": 72,
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "GYlpR",
+                      "width": 72,
+                      "height": 48,
+                      "fill": "$color-neutral-400",
+                      "cornerRadius": 6,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "#2a2d35"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "qhtbB",
+                      "fill": "#a0a6b2",
+                      "content": "neutral-400",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
                       "fontWeight": "normal"
@@ -4040,7 +4084,7 @@
                       "id": "OeeFe",
                       "width": 72,
                       "height": 48,
-                      "fill": "$color-neutral-400",
+                      "fill": "$color-neutral-500",
                       "cornerRadius": 6,
                       "stroke": {
                         "thickness": 1,
@@ -4051,7 +4095,7 @@
                       "type": "text",
                       "id": "m0VVHz",
                       "fill": "#a0a6b2",
-                      "content": "neutral-400",
+                      "content": "neutral-500",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
                       "fontWeight": "normal"
@@ -4079,7 +4123,7 @@
                       "id": "f0ofC9",
                       "width": 72,
                       "height": 48,
-                      "fill": "$color-neutral-500",
+                      "fill": "$color-neutral-600",
                       "cornerRadius": 6,
                       "stroke": {
                         "thickness": 1,
@@ -4090,7 +4134,7 @@
                       "type": "text",
                       "id": "Q3gkQU",
                       "fill": "#a0a6b2",
-                      "content": "neutral-500",
+                      "content": "neutral-600",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
                       "fontWeight": "normal"
@@ -4118,7 +4162,7 @@
                       "id": "W4Hv5",
                       "width": 72,
                       "height": 48,
-                      "fill": "$color-neutral-600",
+                      "fill": "$color-neutral-700",
                       "cornerRadius": 6,
                       "stroke": {
                         "thickness": 1,
@@ -4129,7 +4173,7 @@
                       "type": "text",
                       "id": "dPQaJ",
                       "fill": "#a0a6b2",
-                      "content": "neutral-600",
+                      "content": "neutral-700",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
                       "fontWeight": "normal"
@@ -4157,7 +4201,7 @@
                       "id": "Rvbn1",
                       "width": 72,
                       "height": 48,
-                      "fill": "$color-neutral-700",
+                      "fill": "$color-neutral-800",
                       "cornerRadius": 6,
                       "stroke": {
                         "thickness": 1,
@@ -4168,7 +4212,7 @@
                       "type": "text",
                       "id": "U2E37h",
                       "fill": "#a0a6b2",
-                      "content": "neutral-700",
+                      "content": "neutral-800",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
                       "fontWeight": "normal"
@@ -4196,7 +4240,7 @@
                       "id": "sIihL",
                       "width": 72,
                       "height": 48,
-                      "fill": "$color-neutral-800",
+                      "fill": "$color-neutral-900",
                       "cornerRadius": 6,
                       "stroke": {
                         "thickness": 1,
@@ -4207,7 +4251,7 @@
                       "type": "text",
                       "id": "o1CriU",
                       "fill": "#a0a6b2",
-                      "content": "neutral-800",
+                      "content": "neutral-900",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
                       "fontWeight": "normal"
@@ -4756,6 +4800,45 @@
                       "type": "text",
                       "id": "siauK",
                       "fill": "#9CA3AF",
+                      "content": "#666f7f",
+                      "fontFamily": "Roboto Mono",
+                      "fontSize": 8,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DfKBr",
+                  "width": 72,
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "j58g5",
+                      "width": 72,
+                      "height": 48,
+                      "fill": "$color-neutral-400",
+                      "cornerRadius": 6,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "#dde0e8"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "o1Bn1",
+                      "fill": "#4B5563",
+                      "content": "neutral-400",
+                      "fontFamily": "Roboto Mono",
+                      "fontSize": 9,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "pRUhs",
+                      "fill": "#9CA3AF",
                       "content": "#9ca3af",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 8,
@@ -4775,7 +4858,7 @@
                       "id": "zjTqJ",
                       "width": 72,
                       "height": 48,
-                      "fill": "$color-neutral-400",
+                      "fill": "$color-neutral-500",
                       "cornerRadius": 6,
                       "stroke": {
                         "thickness": 1,
@@ -4786,7 +4869,7 @@
                       "type": "text",
                       "id": "MJcc3",
                       "fill": "#4B5563",
-                      "content": "neutral-400",
+                      "content": "neutral-500",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
                       "fontWeight": "normal"
@@ -4814,7 +4897,7 @@
                       "id": "F0wvq",
                       "width": 72,
                       "height": 48,
-                      "fill": "$color-neutral-500",
+                      "fill": "$color-neutral-600",
                       "cornerRadius": 6,
                       "stroke": {
                         "thickness": 1,
@@ -4825,7 +4908,7 @@
                       "type": "text",
                       "id": "VUQxR",
                       "fill": "#4B5563",
-                      "content": "neutral-500",
+                      "content": "neutral-600",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
                       "fontWeight": "normal"
@@ -4853,7 +4936,7 @@
                       "id": "P5cAb7",
                       "width": 72,
                       "height": 48,
-                      "fill": "$color-neutral-600",
+                      "fill": "$color-neutral-700",
                       "cornerRadius": 6,
                       "stroke": {
                         "thickness": 1,
@@ -4864,7 +4947,7 @@
                       "type": "text",
                       "id": "CeI4a",
                       "fill": "#4B5563",
-                      "content": "neutral-600",
+                      "content": "neutral-700",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
                       "fontWeight": "normal"
@@ -4892,7 +4975,7 @@
                       "id": "B5xkJ",
                       "width": 72,
                       "height": 48,
-                      "fill": "$color-neutral-700",
+                      "fill": "$color-neutral-800",
                       "cornerRadius": 6,
                       "stroke": {
                         "thickness": 1,
@@ -4903,7 +4986,7 @@
                       "type": "text",
                       "id": "lLmFv",
                       "fill": "#4B5563",
-                      "content": "neutral-700",
+                      "content": "neutral-800",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
                       "fontWeight": "normal"
@@ -4931,7 +5014,7 @@
                       "id": "UDSLx",
                       "width": 72,
                       "height": 48,
-                      "fill": "$color-neutral-800",
+                      "fill": "$color-neutral-900",
                       "cornerRadius": 6,
                       "stroke": {
                         "thickness": 1,
@@ -4942,7 +5025,7 @@
                       "type": "text",
                       "id": "eidmg",
                       "fill": "#4B5563",
-                      "content": "neutral-800",
+                      "content": "neutral-900",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
                       "fontWeight": "normal"
@@ -5126,7 +5209,7 @@
           "id": "UMhri",
           "name": "Header",
           "clip": true,
-          "fill": "$color-neutral-700",
+          "fill": "$color-neutral-800",
           "gap": "$space-5",
           "padding": "$space-5",
           "justifyContent": "center",
@@ -5167,12 +5250,12 @@
               "reusable": true,
               "width": 280,
               "height": 32,
-              "fill": "$color-neutral-600",
+              "fill": "$color-neutral-700",
               "cornerRadius": "$radius-pill",
               "stroke": {
                 "align": "inside",
                 "thickness": 1,
-                "fill": "$color-neutral-500"
+                "fill": "$color-neutral-600"
               },
               "gap": "$space-3",
               "padding": [
@@ -5194,7 +5277,7 @@
                   "type": "text",
                   "id": "jcgRV",
                   "name": "placeholder",
-                  "fill": "$color-neutral-300",
+                  "fill": "$color-neutral-400",
                   "content": "Search location...",
                   "fontFamily": "Roboto",
                   "fontSize": 13,
@@ -5210,7 +5293,7 @@
           "name": "Tools",
           "clip": true,
           "width": 456,
-          "fill": "$color-neutral-700",
+          "fill": "$color-neutral-800",
           "gap": "$space-5",
           "padding": "$space-5",
           "alignItems": "center",
@@ -5242,13 +5325,13 @@
                       "height": 13,
                       "iconFontName": "pencil",
                       "iconFontFamily": "lucide",
-                      "fill": "$color-neutral-800"
+                      "fill": "$color-neutral-900"
                     },
                     {
                       "type": "text",
                       "id": "rN2Go",
                       "name": "Edit Geometry",
-                      "fill": "$color-neutral-800",
+                      "fill": "$color-neutral-900",
                       "content": "Button Primary",
                       "fontFamily": "Roboto",
                       "fontSize": 12,
@@ -5265,12 +5348,12 @@
               "reusable": true,
               "width": 34,
               "height": 34,
-              "fill": "$color-neutral-600",
+              "fill": "$color-neutral-700",
               "cornerRadius": "$radius-m",
               "stroke": {
                 "align": "inside",
                 "thickness": 1,
-                "fill": "$color-neutral-400"
+                "fill": "$color-neutral-500"
               },
               "justifyContent": "center",
               "alignItems": "center",
@@ -5339,7 +5422,7 @@
               "reusable": true,
               "width": 32,
               "height": 1,
-              "fill": "$color-neutral-400"
+              "fill": "$color-neutral-500"
             },
             {
               "type": "frame",
@@ -5349,7 +5432,7 @@
               "rotation": -90,
               "width": 32,
               "height": 1,
-              "fill": "$color-neutral-400"
+              "fill": "$color-neutral-500"
             },
             {
               "type": "frame",
@@ -5358,7 +5441,7 @@
               "reusable": true,
               "width": 28,
               "height": 28,
-              "fill": "$color-neutral-600",
+              "fill": "$color-neutral-700",
               "cornerRadius": "$radius-pill",
               "justifyContent": "center",
               "alignItems": "center",
@@ -5382,7 +5465,7 @@
           "name": "Map",
           "clip": true,
           "width": 427,
-          "fill": "$color-neutral-700",
+          "fill": "$color-neutral-800",
           "layout": "vertical",
           "gap": "$space-5",
           "padding": "$space-5",
@@ -5392,12 +5475,12 @@
               "id": "K317Rc",
               "name": "hud-zoom",
               "reusable": true,
-              "fill": "$color-neutral-700",
+              "fill": "$color-neutral-800",
               "cornerRadius": "$radius-m",
               "stroke": {
                 "align": "outside",
                 "thickness": 1,
-                "fill": "$color-neutral-500"
+                "fill": "$color-neutral-600"
               },
               "layout": "vertical",
               "gap": 1,
@@ -5429,7 +5512,7 @@
                 {
                   "type": "rectangle",
                   "id": "B4R6r",
-                  "fill": "$color-neutral-500",
+                  "fill": "$color-neutral-600",
                   "width": 32,
                   "height": 1
                 },
@@ -5468,11 +5551,11 @@
               "id": "l9akC",
               "name": "hud-coords",
               "reusable": true,
-              "fill": "$color-neutral-700",
+              "fill": "$color-neutral-800",
               "cornerRadius": "$radius-m",
               "stroke": {
                 "thickness": 1,
-                "fill": "$color-neutral-600"
+                "fill": "$color-neutral-700"
               },
               "gap": "$space-5",
               "padding": [
@@ -5502,7 +5585,7 @@
                 {
                   "type": "rectangle",
                   "id": "oQ0fx",
-                  "fill": "$color-neutral-500",
+                  "fill": "$color-neutral-600",
                   "width": 1,
                   "height": 12
                 },
@@ -5518,7 +5601,7 @@
                 {
                   "type": "rectangle",
                   "id": "SaNBy",
-                  "fill": "$color-neutral-500",
+                  "fill": "$color-neutral-600",
                   "width": 1,
                   "height": 12
                 },
@@ -5578,7 +5661,7 @@
           "name": "Panel",
           "clip": true,
           "width": 359,
-          "fill": "$color-neutral-700",
+          "fill": "$color-neutral-800",
           "layout": "vertical",
           "gap": 16,
           "padding": 16,
@@ -5609,7 +5692,7 @@
               "cornerRadius": "$radius-pill",
               "stroke": {
                 "thickness": 1,
-                "fill": "$color-neutral-500"
+                "fill": "$color-neutral-600"
               },
               "padding": [
                 3,
@@ -5621,7 +5704,7 @@
                   "type": "text",
                   "id": "q6UC91",
                   "name": "label",
-                  "fill": "$color-neutral-300",
+                  "fill": "$color-neutral-400",
                   "content": "tag",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 10,
@@ -5637,7 +5720,7 @@
               "cornerRadius": "$radius-s",
               "stroke": {
                 "thickness": 1,
-                "fill": "$color-neutral-500"
+                "fill": "$color-neutral-600"
               },
               "padding": [
                 3,
@@ -5649,7 +5732,7 @@
                   "type": "text",
                   "id": "uTf85",
                   "name": "label",
-                  "fill": "$color-neutral-300",
+                  "fill": "$color-neutral-400",
                   "content": "Type",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 9,
@@ -5680,7 +5763,7 @@
                   "fontStyle": "normal"
                 },
                 "LZF7J": {
-                  "fill": "$color-neutral-300"
+                  "fill": "$color-neutral-400"
                 }
               }
             },
@@ -5696,7 +5779,7 @@
                 "thickness": {
                   "bottom": 1
                 },
-                "fill": "$color-neutral-500"
+                "fill": "$color-neutral-600"
               },
               "gap": "$space-4",
               "padding": [
@@ -5709,7 +5792,7 @@
                   "type": "ellipse",
                   "id": "XkvWZ",
                   "name": "dot",
-                  "fill": "$color-neutral-500",
+                  "fill": "$color-neutral-600",
                   "width": 9,
                   "height": 9
                 },
@@ -5735,7 +5818,7 @@
                       "type": "text",
                       "id": "U1z2R",
                       "name": "meta",
-                      "fill": "$color-neutral-300",
+                      "fill": "$color-neutral-400",
                       "content": "0 nodes · 0 km",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 10,
@@ -5752,7 +5835,7 @@
                   "descendants": {
                     "uTf85": {
                       "content": "Type",
-                      "fill": "$color-neutral-300"
+                      "fill": "$color-neutral-400"
                     }
                   }
                 },
@@ -5786,7 +5869,7 @@
                   "y": 3,
                   "width": 22,
                   "height": 22,
-                  "fill": "$color-neutral-600",
+                  "fill": "$color-neutral-700",
                   "padding": 0,
                   "cornerRadius": "$radius-s",
                   "descendants": {
@@ -5802,7 +5885,7 @@
                   "type": "text",
                   "id": "uJ70M",
                   "name": "name",
-                  "fill": "$color-neutral-300",
+                  "fill": "$color-neutral-400",
                   "content": "Place name",
                   "fontFamily": "Roboto",
                   "fontSize": 11,
@@ -5812,7 +5895,7 @@
                   "type": "text",
                   "id": "cxGws",
                   "name": "distance",
-                  "fill": "$color-neutral-300",
+                  "fill": "$color-neutral-400",
                   "content": "0.0 km",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 10,
@@ -5827,7 +5910,7 @@
               "reusable": true,
               "width": "fill_container",
               "height": 1,
-              "fill": "$color-neutral-500"
+              "fill": "$color-neutral-600"
             }
           ]
         }
@@ -5836,7 +5919,7 @@
     {
       "type": "frame",
       "id": "l64IEU",
-      "x": 3430,
+      "x": 3558,
       "y": 3224,
       "name": "spacing-tokens",
       "fill": "#11131880",
@@ -5867,7 +5950,7 @@
             {
               "type": "text",
               "id": "mvKQC",
-              "fill": "$color-neutral-500",
+              "fill": "$color-neutral-600",
               "content": "SPACE",
               "fontFamily": "Roboto",
               "fontSize": 9,
@@ -5890,7 +5973,7 @@
                 {
                   "type": "text",
                   "id": "y0QDJ",
-                  "fill": "$color-neutral-400",
+                  "fill": "$color-neutral-500",
                   "content": "space-1   2px",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 9,
@@ -5915,7 +5998,7 @@
                 {
                   "type": "text",
                   "id": "Uf30p",
-                  "fill": "$color-neutral-400",
+                  "fill": "$color-neutral-500",
                   "content": "space-2   4px",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 9,
@@ -5940,7 +6023,7 @@
                 {
                   "type": "text",
                   "id": "ykGKK",
-                  "fill": "$color-neutral-400",
+                  "fill": "$color-neutral-500",
                   "content": "space-3   8px",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 9,
@@ -5965,7 +6048,7 @@
                 {
                   "type": "text",
                   "id": "u8hzN",
-                  "fill": "$color-neutral-400",
+                  "fill": "$color-neutral-500",
                   "content": "space-4   12px",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 9,
@@ -5990,7 +6073,7 @@
                 {
                   "type": "text",
                   "id": "FJYXE",
-                  "fill": "$color-neutral-400",
+                  "fill": "$color-neutral-500",
                   "content": "space-5   16px",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 9,
@@ -6015,7 +6098,7 @@
                 {
                   "type": "text",
                   "id": "xHD2i",
-                  "fill": "$color-neutral-400",
+                  "fill": "$color-neutral-500",
                   "content": "space-6   24px",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 9,
@@ -6040,7 +6123,7 @@
                 {
                   "type": "text",
                   "id": "p7erU",
-                  "fill": "$color-neutral-400",
+                  "fill": "$color-neutral-500",
                   "content": "space-7   32px",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 9,
@@ -6065,7 +6148,7 @@
                 {
                   "type": "text",
                   "id": "ajtl8",
-                  "fill": "$color-neutral-400",
+                  "fill": "$color-neutral-500",
                   "content": "space-8   48px",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 9,
@@ -6090,7 +6173,7 @@
                 {
                   "type": "text",
                   "id": "MhPVw",
-                  "fill": "$color-neutral-400",
+                  "fill": "$color-neutral-500",
                   "content": "space-9   64px",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 9,
@@ -6115,7 +6198,7 @@
                 {
                   "type": "text",
                   "id": "GBNGl",
-                  "fill": "$color-neutral-400",
+                  "fill": "$color-neutral-500",
                   "content": "space-10   96px",
                   "fontFamily": "Roboto Mono",
                   "fontSize": 9,
@@ -6134,7 +6217,7 @@
             {
               "type": "text",
               "id": "O29zl",
-              "fill": "$color-neutral-500",
+              "fill": "$color-neutral-600",
               "content": "RADIUS",
               "fontFamily": "Roboto",
               "fontSize": 9,
@@ -6160,13 +6243,13 @@
                       "cornerRadius": "$radius-s",
                       "stroke": {
                         "thickness": 1,
-                        "fill": "$color-neutral-700"
+                        "fill": "$color-neutral-800"
                       }
                     },
                     {
                       "type": "text",
                       "id": "a0CXKT",
-                      "fill": "$color-neutral-400",
+                      "fill": "$color-neutral-500",
                       "content": "radius-s",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
@@ -6175,7 +6258,7 @@
                     {
                       "type": "text",
                       "id": "uMrY2",
-                      "fill": "$color-neutral-500",
+                      "fill": "$color-neutral-600",
                       "content": "4px",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 8,
@@ -6198,13 +6281,13 @@
                       "cornerRadius": "$radius-m",
                       "stroke": {
                         "thickness": 1,
-                        "fill": "$color-neutral-700"
+                        "fill": "$color-neutral-800"
                       }
                     },
                     {
                       "type": "text",
                       "id": "zUzNr",
-                      "fill": "$color-neutral-400",
+                      "fill": "$color-neutral-500",
                       "content": "radius-m",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
@@ -6213,7 +6296,7 @@
                     {
                       "type": "text",
                       "id": "D5JDwT",
-                      "fill": "$color-neutral-500",
+                      "fill": "$color-neutral-600",
                       "content": "8px",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 8,
@@ -6236,13 +6319,13 @@
                       "cornerRadius": "$radius-l",
                       "stroke": {
                         "thickness": 1,
-                        "fill": "$color-neutral-700"
+                        "fill": "$color-neutral-800"
                       }
                     },
                     {
                       "type": "text",
                       "id": "yXA3a",
-                      "fill": "$color-neutral-400",
+                      "fill": "$color-neutral-500",
                       "content": "radius-l",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
@@ -6251,7 +6334,7 @@
                     {
                       "type": "text",
                       "id": "j2NFD",
-                      "fill": "$color-neutral-500",
+                      "fill": "$color-neutral-600",
                       "content": "12px",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 8,
@@ -6274,13 +6357,13 @@
                       "cornerRadius": "$radius-xl",
                       "stroke": {
                         "thickness": 1,
-                        "fill": "$color-neutral-700"
+                        "fill": "$color-neutral-800"
                       }
                     },
                     {
                       "type": "text",
                       "id": "TZh62",
-                      "fill": "$color-neutral-400",
+                      "fill": "$color-neutral-500",
                       "content": "radius-xl",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
@@ -6289,7 +6372,7 @@
                     {
                       "type": "text",
                       "id": "jzBnR",
-                      "fill": "$color-neutral-500",
+                      "fill": "$color-neutral-600",
                       "content": "16px",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 8,
@@ -6312,13 +6395,13 @@
                       "cornerRadius": "$radius-pill",
                       "stroke": {
                         "thickness": 1,
-                        "fill": "$color-neutral-700"
+                        "fill": "$color-neutral-800"
                       }
                     },
                     {
                       "type": "text",
                       "id": "aZvYR",
-                      "fill": "$color-neutral-400",
+                      "fill": "$color-neutral-500",
                       "content": "radius-pill",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 9,
@@ -6327,7 +6410,7 @@
                     {
                       "type": "text",
                       "id": "LRQMU",
-                      "fill": "$color-neutral-500",
+                      "fill": "$color-neutral-600",
                       "content": "pill",
                       "fontFamily": "Roboto Mono",
                       "fontSize": 8,
@@ -6344,7 +6427,7 @@
     {
       "type": "frame",
       "id": "EWrYQ",
-      "x": 3430,
+      "x": 3558,
       "y": 3806,
       "name": "typography-tokens",
       "width": 488,
@@ -6377,7 +6460,7 @@
             {
               "type": "text",
               "id": "EGX2X",
-              "fill": "$color-neutral-500",
+              "fill": "$color-neutral-600",
               "content": "UI",
               "fontFamily": "Roboto",
               "fontSize": 9,
@@ -6436,7 +6519,7 @@
                         {
                           "type": "text",
                           "id": "k3uI7X",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "content": "display",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 9,
@@ -6445,7 +6528,7 @@
                         {
                           "type": "text",
                           "id": "WNMn0",
-                          "fill": "$color-neutral-500",
+                          "fill": "$color-neutral-600",
                           "content": "Roboto  ·  15px  ·  600",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 8,
@@ -6499,7 +6582,7 @@
                         {
                           "type": "text",
                           "id": "J8V5Oh",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "content": "title-lg",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 9,
@@ -6508,7 +6591,7 @@
                         {
                           "type": "text",
                           "id": "r80Sa",
-                          "fill": "$color-neutral-500",
+                          "fill": "$color-neutral-600",
                           "content": "Roboto  ·  13px  ·  600",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 8,
@@ -6562,7 +6645,7 @@
                         {
                           "type": "text",
                           "id": "dj5el",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "content": "title-md",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 9,
@@ -6571,7 +6654,7 @@
                         {
                           "type": "text",
                           "id": "t5by2B",
-                          "fill": "$color-neutral-500",
+                          "fill": "$color-neutral-600",
                           "content": "Roboto  ·  12px  ·  normal",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 8,
@@ -6625,7 +6708,7 @@
                         {
                           "type": "text",
                           "id": "bGzqi",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "content": "body",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 9,
@@ -6634,7 +6717,7 @@
                         {
                           "type": "text",
                           "id": "Mm3Ka",
-                          "fill": "$color-neutral-500",
+                          "fill": "$color-neutral-600",
                           "content": "Roboto  ·  11px  ·  normal",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 8,
@@ -6688,7 +6771,7 @@
                         {
                           "type": "text",
                           "id": "VAP6r",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "content": "label",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 9,
@@ -6697,7 +6780,7 @@
                         {
                           "type": "text",
                           "id": "wB7HH",
-                          "fill": "$color-neutral-500",
+                          "fill": "$color-neutral-600",
                           "content": "Roboto  ·  9px  ·  600",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 8,
@@ -6751,7 +6834,7 @@
                         {
                           "type": "text",
                           "id": "f9l9l",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "content": "caption",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 9,
@@ -6760,7 +6843,7 @@
                         {
                           "type": "text",
                           "id": "JGoK7",
-                          "fill": "$color-neutral-500",
+                          "fill": "$color-neutral-600",
                           "content": "Roboto  ·  9px  ·  normal",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 8,
@@ -6784,7 +6867,7 @@
             {
               "type": "text",
               "id": "QKRoE",
-              "fill": "$color-neutral-500",
+              "fill": "$color-neutral-600",
               "content": "MONO",
               "fontFamily": "Roboto",
               "fontSize": 9,
@@ -6840,7 +6923,7 @@
                         {
                           "type": "text",
                           "id": "mZ98i",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "content": "mono-lg",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 9,
@@ -6849,7 +6932,7 @@
                         {
                           "type": "text",
                           "id": "H8TlU",
-                          "fill": "$color-neutral-500",
+                          "fill": "$color-neutral-600",
                           "content": "Mono  ·  12px  ·  600",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 8,
@@ -6903,7 +6986,7 @@
                         {
                           "type": "text",
                           "id": "N7f3c",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "content": "mono-md",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 9,
@@ -6912,7 +6995,7 @@
                         {
                           "type": "text",
                           "id": "b2zln2",
-                          "fill": "$color-neutral-500",
+                          "fill": "$color-neutral-600",
                           "content": "Mono  ·  11px  ·  normal",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 8,
@@ -6966,7 +7049,7 @@
                         {
                           "type": "text",
                           "id": "k27S9",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "content": "mono-sm",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 9,
@@ -6975,7 +7058,7 @@
                         {
                           "type": "text",
                           "id": "WDaN5",
-                          "fill": "$color-neutral-500",
+                          "fill": "$color-neutral-600",
                           "content": "Mono  ·  10px  ·  normal",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 8,
@@ -7029,7 +7112,7 @@
                         {
                           "type": "text",
                           "id": "VbhnB",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "content": "mono-badge",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 9,
@@ -7038,7 +7121,7 @@
                         {
                           "type": "text",
                           "id": "DJnRp",
-                          "fill": "$color-neutral-500",
+                          "fill": "$color-neutral-600",
                           "content": "Mono  ·  9px  ·  600",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 8,
@@ -7092,7 +7175,7 @@
                         {
                           "type": "text",
                           "id": "b5kxaT",
-                          "fill": "$color-neutral-400",
+                          "fill": "$color-neutral-500",
                           "content": "mono-xs",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 9,
@@ -7101,7 +7184,7 @@
                         {
                           "type": "text",
                           "id": "il6He",
-                          "fill": "$color-neutral-500",
+                          "fill": "$color-neutral-600",
                           "content": "Mono  ·  8px  ·  normal",
                           "fontFamily": "Roboto Mono",
                           "fontSize": 8,
@@ -7265,108 +7348,6 @@
       "type": "color",
       "value": "#ff8c42"
     },
-    "color-neutral-800": {
-      "type": "color",
-      "value": [
-        {
-          "value": "#000000",
-          "theme": {
-            "mode": "dark"
-          }
-        },
-        {
-          "value": "#f9fafb",
-          "theme": {
-            "mode": "light"
-          }
-        }
-      ]
-    },
-    "color-neutral-700": {
-      "type": "color",
-      "value": [
-        {
-          "value": "#111318",
-          "theme": {
-            "mode": "dark"
-          }
-        },
-        {
-          "value": "#f2f4f7",
-          "theme": {
-            "mode": "light"
-          }
-        }
-      ]
-    },
-    "color-neutral-600": {
-      "type": "color",
-      "value": [
-        {
-          "value": "#1f222a",
-          "theme": {
-            "mode": "dark"
-          }
-        },
-        {
-          "value": "#e9ebf1",
-          "theme": {
-            "mode": "light"
-          }
-        }
-      ]
-    },
-    "color-neutral-500": {
-      "type": "color",
-      "value": [
-        {
-          "value": "#2a2d35",
-          "theme": {
-            "mode": "dark"
-          }
-        },
-        {
-          "value": "#e3e9ed",
-          "theme": {
-            "mode": "light"
-          }
-        }
-      ]
-    },
-    "color-neutral-400": {
-      "type": "color",
-      "value": [
-        {
-          "value": "#3a3d45",
-          "theme": {
-            "mode": "dark"
-          }
-        },
-        {
-          "value": "#dde0e8",
-          "theme": {
-            "mode": "light"
-          }
-        }
-      ]
-    },
-    "color-neutral-300": {
-      "type": "color",
-      "value": [
-        {
-          "value": "#6e7280",
-          "theme": {
-            "mode": "dark"
-          }
-        },
-        {
-          "value": "#9ca3af",
-          "theme": {
-            "mode": "light"
-          }
-        }
-      ]
-    },
     "color-neutral-200": {
       "type": "color",
       "value": [
@@ -7446,6 +7427,125 @@
         },
         {
           "value": "\"Roboto Mono\", monospace",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "color-neutral-900": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#000000",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#f9fafb",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "color-neutral-800": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111318",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#f2f4f7",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "color-neutral-700": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#1f222a",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#e9ebf1",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "color-neutral-600": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#2a2d35",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#e3e9ed",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "color-neutral-500": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#3a3d45",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#dde0e8",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "color-neutral-400": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#6e7280",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#9ca3af",
+          "theme": {
+            "mode": "light"
+          }
+        }
+      ]
+    },
+    "color-neutral-300": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#818898",
+          "theme": {
+            "mode": "dark"
+          }
+        },
+        {
+          "value": "#666f7f",
           "theme": {
             "mode": "light"
           }
