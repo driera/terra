@@ -1,32 +1,49 @@
 :root {
-  /* Palette */
-  --color-surface: #ffffff;
-  --color-surface-hover: #f0f0f0;
-  --color-border: #d0d0d0;
-  --color-text-muted: #a0a0a0;
-  --color-accent: #0066cc;
-  --color-accent-dark: #0055aa;
+  /* Colors — neutral palette (light mode) */
+  --color-neutral-100: #111827;
+  --color-neutral-200: #4b5563;
+  --color-neutral-300: #666f7f;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #dde0e8;
+  --color-neutral-600: #e3e9ed;
+  --color-neutral-700: #e9ebf1;
+  --color-neutral-800: #f2f4f7;
+  --color-neutral-900: #f9fafb;
+
+  /* Colors — brand */
+  --color-primary: #0066ff;
+  --color-primary-alpha: #0066ff1a;
+  --color-red: #ff5757;
 
   /* Typography */
-  --font-family-base: sans-serif;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.25rem;
+  --font-family-base: 'Roboto', sans-serif;
+  --font-family-mono: 'Roboto Mono', monospace;
+  --font-size-xs: 0.625rem;    /* 10px */
+  --font-size-sm: 0.6875rem;   /* 11px */
+  --font-size-base: 0.8125rem; /* 13px */
 
-  /* Spacing */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
+  /* Spacing (px values matching design scale) */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 48px;
+  --space-9: 64px;
+  --space-10: 96px;
 
   /* Radius */
-  --radius-base: 4px;
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
 
   /* Focus */
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
-
-
 }
 
 html,
@@ -43,6 +60,7 @@ body {
 body {
   margin: 0;
   font-family: var(--font-family-base);
+  background: var(--color-neutral-900);
 }
 
 #root {
