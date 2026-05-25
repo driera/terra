@@ -1,23 +1,22 @@
 .coordinates {
-  --coord-value-width: 9ch;
-
+  position: absolute;
+  bottom: var(--space-5);
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: var(--space-1);
-  font-size: var(--font-size-sm);
-  font-variant-numeric: tabular-nums;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-neutral-800);
+  border: 1px solid var(--color-neutral-700);
+  border-radius: var(--radius-m);
   white-space: nowrap;
+  z-index: 1;
 }
 
-.pair {
-  display: flex;
-  align-items: baseline;
-}
-
-.label {
-  margin-right: var(--space-1);
-}
-
-.value {
-  display: inline-block;
-  width: var(--coord-value-width);
+.coord {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-neutral-200);
 }

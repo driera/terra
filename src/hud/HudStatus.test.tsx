@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Mock } from 'vitest'
 import { useDrawing } from '../api'
 import type { DrawingState } from '../api'
-import DrawingMetadata from './DrawingMetadata'
+import HudStatus from './HudStatus'
 
 vi.mock('../api', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../api')>()
@@ -24,39 +24,29 @@ const makeState = (overrides: Partial<DrawingState> = {}): DrawingState => ({
   ...overrides,
 })
 
-describe('DrawingMetadata', () => {
+describe('HudStatus', () => {
   beforeEach(() => {
     vi.mocked(useDrawing as Mock).mockReset()
   })
 
   it('renders nothing when there is no drawing activity', () => {
     vi.mocked(useDrawing as Mock).mockReturnValue(makeState())
-    const { container } = render(<DrawingMetadata />)
+    const { container } = render(<HudStatus />)
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('renders only distance when drawing with no completed geometries', () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue(
-      makeState({ isDrawing: true, distance: 340 })
-    )
-    render(<DrawingMetadata />)
+  it('renders distance during drawing with no completed geometries', () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue(makeState({ isDrawing: true, distance: 340 }))
+    render(<HudStatus />)
     expect(screen.getByText('340 m')).toBeInTheDocument()
     expect(screen.queryByText(/line/)).toBeNull()
-  })
-
-  it('distance span is not muted when drawing with no completed geometries', () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue(
-      makeState({ isDrawing: true, distance: 340 })
-    )
-    render(<DrawingMetadata />)
-    expect(screen.getByText('340 m').className).not.toMatch(/muted/)
   })
 
   it('renders lines+vertices and distance when completed and not drawing', () => {
     vi.mocked(useDrawing as Mock).mockReturnValue(
       makeState({ hasCompleted: true, lineCount: 1, vertexCount: 5, distance: 1500 })
     )
-    render(<DrawingMetadata />)
+    render(<HudStatus />)
     expect(screen.getByText(/1 line/)).toBeInTheDocument()
     expect(screen.getByText(/5 vertices/)).toBeInTheDocument()
     expect(screen.getByText('1500 m')).toBeInTheDocument()
@@ -66,32 +56,23 @@ describe('DrawingMetadata', () => {
     vi.mocked(useDrawing as Mock).mockReturnValue(
       makeState({ hasCompleted: true, lineCount: 2, vertexCount: 4, distance: 200 })
     )
-    render(<DrawingMetadata />)
+    render(<HudStatus />)
     expect(screen.getByText(/2 lines/)).toBeInTheDocument()
   })
 
-  it('neither span is muted when completed and not drawing', () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue(
-      makeState({ hasCompleted: true, lineCount: 1, vertexCount: 2, distance: 500 })
-    )
-    render(<DrawingMetadata />)
-    expect(screen.getByText(/1 line/).className).not.toMatch(/muted/)
-    expect(screen.getByText('500 m').className).not.toMatch(/muted/)
-  })
-
-  it('stats span is muted when drawing with completed geometries', () => {
+  it('stats are muted when drawing with completed geometries', () => {
     vi.mocked(useDrawing as Mock).mockReturnValue(
       makeState({ isDrawing: true, hasCompleted: true, lineCount: 1, vertexCount: 2, distance: 700 })
     )
-    render(<DrawingMetadata />)
+    render(<HudStatus />)
     expect(screen.getByText(/1 line/).className).toMatch(/muted/)
   })
 
-  it('distance span is NOT muted when drawing with completed geometries', () => {
+  it('distance is not muted when drawing with completed geometries', () => {
     vi.mocked(useDrawing as Mock).mockReturnValue(
       makeState({ isDrawing: true, hasCompleted: true, lineCount: 1, vertexCount: 2, distance: 700 })
     )
-    render(<DrawingMetadata />)
+    render(<HudStatus />)
     expect(screen.getByText('700 m').className).not.toMatch(/muted/)
   })
 
@@ -99,18 +80,16 @@ describe('DrawingMetadata', () => {
     vi.mocked(useDrawing as Mock).mockReturnValue(
       makeState({ hasCompleted: true, lineCount: 1, vertexCount: 2, distance: 340 })
     )
-    const { container } = render(<DrawingMetadata />)
+    const { container } = render(<HudStatus />)
     await act(async () => {
       const results = await axe(container)
       expect(results).toHaveNoViolations()
     })
   })
 
-  it('has no a11y violations when drawing with only the distance span visible', async () => {
-    vi.mocked(useDrawing as Mock).mockReturnValue(
-      makeState({ isDrawing: true, distance: 340 })
-    )
-    const { container } = render(<DrawingMetadata />)
+  it('has no a11y violations when drawing', async () => {
+    vi.mocked(useDrawing as Mock).mockReturnValue(makeState({ isDrawing: true, distance: 340 }))
+    const { container } = render(<HudStatus />)
     await act(async () => {
       const results = await axe(container)
       expect(results).toHaveNoViolations()

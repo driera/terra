@@ -21,22 +21,25 @@ describe('Coordinates', () => {
     expect(container).toBeEmptyDOMElement()
   })
 
-  it('renders lat and lng labels with values', () => {
+  it('renders coordinates in degree/direction format', () => {
     vi.mocked(usePointer).mockReturnValue({ coordinates: [2.1734, 41.3851] })
     render(<Coordinates />)
-    expect(screen.getByText('lat:')).toBeInTheDocument()
-    expect(screen.getByText('lng:')).toBeInTheDocument()
-    expect(screen.getByText('41.3851')).toBeInTheDocument()
-    expect(screen.getByText('2.1734')).toBeInTheDocument()
+    expect(screen.getByText('41.3851° N')).toBeInTheDocument()
+    expect(screen.getByText('2.1734° E')).toBeInTheDocument()
+  })
+
+  it('renders S and W for negative coordinates', () => {
+    vi.mocked(usePointer).mockReturnValue({ coordinates: [-73.9857, -40.7128] })
+    render(<Coordinates />)
+    expect(screen.getByText('40.7128° S')).toBeInTheDocument()
+    expect(screen.getByText('73.9857° W')).toBeInTheDocument()
   })
 
   it('rounds values to 4 decimal places', () => {
-    vi.mocked(usePointer).mockReturnValue({
-      coordinates: [2.17345678, 41.38516789],
-    })
+    vi.mocked(usePointer).mockReturnValue({ coordinates: [2.17345678, 41.38516789] })
     render(<Coordinates />)
-    expect(screen.getByText('41.3852')).toBeInTheDocument()
-    expect(screen.getByText('2.1735')).toBeInTheDocument()
+    expect(screen.getByText('41.3852° N')).toBeInTheDocument()
+    expect(screen.getByText('2.1735° E')).toBeInTheDocument()
   })
 
   it('has no a11y violations when showing coordinates', async () => {

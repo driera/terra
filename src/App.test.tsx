@@ -15,8 +15,12 @@ vi.mock('./controls/DrawingToolbar', () => ({
   default: () => <div data-testid="drawing-toolbar" />,
 }))
 
-vi.mock('./hud/Footer', () => ({
-  default: () => <div data-testid="footer" />,
+vi.mock('./hud/Coordinates', () => ({
+  default: () => <div data-testid="coordinates" />,
+}))
+
+vi.mock('./hud/HudStatus', () => ({
+  default: () => <div data-testid="hud-status" />,
 }))
 
 expect.extend(toHaveNoViolations)
@@ -34,25 +38,32 @@ describe('App', () => {
     expect(screen.getByTestId('map-controls')).toBeInTheDocument()
   })
 
-  it('renders Footer', () => {
+  it('renders Coordinates', () => {
     render(<App />)
-    expect(screen.getByTestId('footer')).toBeInTheDocument()
+    expect(screen.getByTestId('coordinates')).toBeInTheDocument()
   })
 
-  it('renders MapCanvas, MapControls and DrawingToolbar inside the map area', () => {
+  it('renders HudStatus', () => {
+    render(<App />)
+    expect(screen.getByTestId('hud-status')).toBeInTheDocument()
+  })
+
+  it('renders MapCanvas, MapControls, HudStatus and Coordinates inside the map area', () => {
     render(<App />)
     const canvas = screen.getByTestId('map-canvas')
     const controls = screen.getByTestId('map-controls')
-    const toolbar = screen.getByTestId('drawing-toolbar')
+    const coords = screen.getByTestId('coordinates')
+    const hud = screen.getByTestId('hud-status')
     expect(canvas.parentElement).toBe(controls.parentElement)
-    expect(canvas.parentElement).toBe(toolbar.parentElement)
+    expect(canvas.parentElement).toBe(coords.parentElement)
+    expect(canvas.parentElement).toBe(hud.parentElement)
   })
 
-  it('renders map area and footer as siblings', () => {
+  it('renders DrawingToolbar as a sibling of the map area', () => {
     render(<App />)
+    const toolbar = screen.getByTestId('drawing-toolbar')
     const canvas = screen.getByTestId('map-canvas')
-    const footer = screen.getByTestId('footer')
-    expect(canvas.parentElement?.parentElement).toBe(footer.parentElement)
+    expect(toolbar.parentElement).toBe(canvas.parentElement?.parentElement)
   })
 
   it('has no a11y violations', async () => {

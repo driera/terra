@@ -9,17 +9,13 @@ const Coordinates = () => {
   if (!coordinates) return null
 
   const [lng, lat] = coordinates
+  const latStr = `${Math.abs(lat).toFixed(DECIMALS)}° ${lat >= 0 ? 'N' : 'S'}`
+  const lngStr = `${Math.abs(lng).toFixed(DECIMALS)}° ${lng >= 0 ? 'E' : 'W'}`
 
   return (
     <div className={styles.coordinates}>
-      <span className={styles.pair}>
-        <span className={styles.label}>lat:</span>
-        <span className={styles.value}>{lat.toFixed(DECIMALS)}</span>
-      </span>
-      <span className={styles.pair}>
-        <span className={styles.label}>lng:</span>
-        <span className={styles.value}>{lng.toFixed(DECIMALS)}</span>
-      </span>
+      <span className={styles.coord}>{latStr}</span>
+      <span className={styles.coord}>{lngStr}</span>
     </div>
   )
 }
