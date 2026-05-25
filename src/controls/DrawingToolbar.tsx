@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import mapApi, { useDrawing, Modes } from '../api'
 import type { Mode } from '../api'
+import ToolButton from './ToolButton'
 import styles from './DrawingToolbar.module.css'
 
 function DrawingToolbar() {
@@ -25,24 +26,13 @@ function DrawingToolbar() {
 
   return (
     <div className={styles.toolbar}>
-      <button
-        type="button"
-        aria-label="Draw line"
-        aria-pressed={mode === Modes.LINE}
-        className={styles.button}
-        onClick={toggleLine}
-      >
+      <ToolButton aria-label="Draw line" pressed={mode === Modes.LINE} onClick={toggleLine}>
         Line
-      </button>
+      </ToolButton>
       {mode === Modes.LINE && isDrawing && (
-        <button
-          type="button"
-          aria-label="Done"
-          className={styles.iconButton}
-          onClick={() => mapApi.completeDrawing()}
-        >
+        <ToolButton aria-label="Done" onClick={() => mapApi.completeDrawing()}>
           ✓
-        </button>
+        </ToolButton>
       )}
     </div>
   )
