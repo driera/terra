@@ -1,5 +1,5 @@
-import mapApi from '../api'
-import ToolButton from './ToolButton'
+import mapApi from '../../api'
+import ToolButton from '../../ui/ToolButton'
 import styles from './MapControls.module.css'
 
 function MapControls() {

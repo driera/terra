@@ -2,12 +2,12 @@ import { render, screen, act } from '@testing-library/react'
 import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Mock } from 'vitest'
-import { useDrawing } from '../api'
-import type { DrawingState } from '../api'
+import { useDrawing } from '../../api'
+import type { DrawingState } from '../../api'
 import HudStatus from './HudStatus'
 
-vi.mock('../api', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('../api')>()
+vi.mock('../../api', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../../api')>()
   return { ...actual, useDrawing: vi.fn() }
 })
 

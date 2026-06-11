@@ -1,10 +1,10 @@
 import { render, screen, act } from '@testing-library/react'
 import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { usePointer } from '../api'
+import { usePointer } from '../../api'
 import Coordinates from './Coordinates'
 
-vi.mock('../api')
+vi.mock('../../api')
 
 expect.extend(toHaveNoViolations)
 

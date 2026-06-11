@@ -3,9 +3,9 @@ import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import maplibregl from 'maplibre-gl'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import MapCanvas from './MapCanvas'
-import mapApi, { useInitialCenter } from '../api'
+import mapApi, { useInitialCenter } from '../../api'
 
-vi.mock('../api')
+vi.mock('../../api')
 
 expect.extend(toHaveNoViolations)
 

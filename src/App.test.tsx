@@ -3,23 +3,23 @@ import { configureAxe, toHaveNoViolations } from 'jest-axe'
 import { describe, expect, it, vi } from 'vitest'
 import App from './App'
 
-vi.mock('./canvas', () => ({
+vi.mock('./features/map', () => ({
   MapCanvas: () => <div data-testid="map-canvas" />,
 }))
 
-vi.mock('./controls/MapControls', () => ({
+vi.mock('./features/map/MapControls', () => ({
   default: () => <div data-testid="map-controls" />,
 }))
 
-vi.mock('./controls/DrawingToolbar', () => ({
+vi.mock('./features/drawing/DrawingToolbar', () => ({
   default: () => <div data-testid="drawing-toolbar" />,
 }))
 
-vi.mock('./hud/Coordinates', () => ({
+vi.mock('./features/map/Coordinates', () => ({
   default: () => <div data-testid="coordinates" />,
 }))
 
-vi.mock('./hud/HudStatus', () => ({
+vi.mock('./features/drawing/HudStatus', () => ({
   default: () => <div data-testid="hud-status" />,
 }))
 

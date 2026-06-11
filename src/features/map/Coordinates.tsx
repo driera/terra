@@ -1,4 +1,4 @@
-import { usePointer } from '../api'
+import { usePointer } from '../../api'
 import styles from './Coordinates.module.css'
 
 const DECIMALS = 4

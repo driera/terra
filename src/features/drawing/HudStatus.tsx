@@ -1,4 +1,4 @@
-import { useDrawing, formatDistance } from '../api'
+import { useDrawing, formatDistance } from '../../api'
 import styles from './HudStatus.module.css'
 
 const HudStatus = () => {

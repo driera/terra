@@ -1,9 +1,9 @@
-import { MapCanvas } from './canvas'
-import MapControls from './controls/MapControls'
-import DrawingToolbar from './controls/DrawingToolbar'
-import Coordinates from './hud/Coordinates'
-import HudStatus from './hud/HudStatus'
-import Logo from './hud/Logo'
+import { MapCanvas } from './features/map'
+import MapControls from './features/map/MapControls'
+import DrawingToolbar from './features/drawing/DrawingToolbar'
+import Coordinates from './features/map/Coordinates'
+import HudStatus from './features/drawing/HudStatus'
+import Logo from './Logo'
 import styles from './App.module.css'
 
 const App = () => {
