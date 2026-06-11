@@ -38,4 +38,4 @@
 Design decisions that must be resolved before writing user stories.
 Resolve each by triggering `write-adr` — open decision mode.
 
-- [ ] URL encoding vs. backend storage for share links — determines whether v1 needs a backend and shapes the entire share architecture
+- [x] URL encoding vs. backend storage for share links — resolved in ADR 009: versioned, deflate-compressed GeoJSON in the URL fragment; backend short-links composable later
