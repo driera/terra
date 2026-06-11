@@ -75,7 +75,7 @@ All map interactions go through `mapApi` (`src/api/`) — never call MapLibre me
 
 Top-level folders under `src/` are categories (lowercase); files inside use PascalCase for components (e.g. `MapCanvas.tsx`) and camelCase for modules/hooks.
 
-- `api/` — the core. One folder per bounded context (`drawing/`, `pointer/`, `location/`): pure domain logic + store + plugin + hook, exposed only through the barrel `src/api/index.ts`
+- `api/` — the core. `core/` wraps MapLibre (facade internals); one folder per bounded context (`drawing/`, `pointer/`, `location/`): pure domain logic + store + plugin + hook, exposed only through the barrel `src/api/index.ts`
 - `features/` — presentation layer, one folder per capability mirroring api modules (`map/`, `drawing/`)
 - `ui/` — design-system primitives shared across features (`ToolButton`)
 - `lib/` — shared kernel (`Store`, `logger`); imports neither react nor maplibre
