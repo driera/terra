@@ -34,8 +34,8 @@ const mapApi = {
 
 export default mapApi
 
-export { usePointer, getPointer } from './pointer'
+export { usePointer } from './pointer'
 export type { PointerState, PointerAttribute } from './pointer'
 
-export { useDrawing, getGeometry, setMode as setDrawingMode, cancel as cancelDrawing, complete as completeDrawing, Modes, formatDistance } from './drawing'
+export { useDrawing, Modes, formatDistance } from './drawing'
 export type { Mode, GeometryState, GeometryAttribute, DrawingState } from './drawing'

@@ -8,7 +8,7 @@ vi.mock('./drawing')
 import core from './core'
 import * as pointer from './pointer'
 import * as drawing from './drawing'
-import mapApi from './index'
+import mapApi, * as api from './index'
 
 describe('mapApi/index', () => {
   beforeEach(() => {
@@ -56,6 +56,20 @@ describe('mapApi/index', () => {
       expect(mapApi.flyTo).toBe(core.flyTo)
       expect(mapApi.zoomIn).toBe(core.zoomIn)
       expect(mapApi.zoomOut).toBe(core.zoomOut)
+    })
+  })
+
+  describe('public surface', () => {
+    it('exposes drawing commands on the facade', () => {
+      expect(mapApi.setDrawingMode).toBe(drawing.setMode)
+      expect(mapApi.cancelDrawing).toBe(drawing.cancel)
+      expect(mapApi.completeDrawing).toBe(drawing.complete)
+    })
+
+    it('limits named exports to hooks and read-side helpers — commands only via the facade', () => {
+      expect(Object.keys(api).sort()).toEqual(
+        ['default', 'formatDistance', 'Modes', 'useDrawing', 'usePointer'].sort(),
+      )
     })
   })
 })
