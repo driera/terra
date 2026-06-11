@@ -2,9 +2,8 @@ import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { useEffect, useRef } from 'react'
 import styles from './MapCanvas.module.css'
-import useInitialCenter from '../location/useInitialCenter'
 import { DEFAULT_CENTER, DEFAULT_ZOOM } from './constants'
-import mapApi from '../api'
+import mapApi, { useInitialCenter } from '../api'
 import { defaultLayers } from './default-layers'
 
 const STYLE_URL = `https://api.maptiler.com/maps/019df8cf-b54b-74e9-81d2-7c1f124b88dd/style.json?key=${import.meta.env.VITE_MAPTILER_API_KEY}`;

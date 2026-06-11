@@ -1,4 +1,4 @@
-import { Store } from '../Store'
+import { Store } from '../../lib/Store'
 
 export type PointerState = {
   coordinates: [number, number] | null

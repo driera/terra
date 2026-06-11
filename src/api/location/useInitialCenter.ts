@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import type { Coordinates, LocationResolver } from './types'
 import getBrowserLocation from './getBrowserLocation'
 import getIpLocation from './getIpLocation'
-import logger from '../logger'
+import logger from '../../lib/logger'
 
 const useInitialCenter = (
   getBrowserLoc: LocationResolver = getBrowserLocation,

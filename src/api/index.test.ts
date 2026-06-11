@@ -68,7 +68,7 @@ describe('mapApi/index', () => {
 
     it('limits named exports to hooks and read-side helpers — commands only via the facade', () => {
       expect(Object.keys(api).sort()).toEqual(
-        ['default', 'formatDistance', 'Modes', 'useDrawing', 'usePointer'].sort(),
+        ['default', 'formatDistance', 'Modes', 'useDrawing', 'useInitialCenter', 'usePointer'].sort(),
       )
     })
   })

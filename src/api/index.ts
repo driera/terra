@@ -39,3 +39,6 @@ export type { PointerState, PointerAttribute } from './pointer'
 
 export { useDrawing, Modes, formatDistance } from './drawing'
 export type { Mode, GeometryState, GeometryAttribute, DrawingState } from './drawing'
+
+export { useInitialCenter } from './location'
+export type { Coordinates, LocationResolver } from './location'

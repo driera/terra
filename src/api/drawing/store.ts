@@ -1,6 +1,6 @@
 import type GeoJSON from 'geojson'
-import { Store } from '../Store'
-import type { Subscriber } from '../Store'
+import { Store } from '../../lib/Store'
+import type { Subscriber } from '../../lib/Store'
 
 export type TerraGeometry = GeoJSON.LineString | GeoJSON.Point | GeoJSON.Polygon
 

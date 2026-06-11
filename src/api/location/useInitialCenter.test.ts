@@ -2,9 +2,9 @@ import { renderHook, act } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import useInitialCenter from './useInitialCenter'
 import type { Coordinates, LocationResolver } from './types'
-import logger from '../logger'
+import logger from '../../lib/logger'
 
-vi.mock('../logger', () => ({ default: { info: vi.fn() } }))
+vi.mock('../../lib/logger', () => ({ default: { info: vi.fn() } }))
 
 const barcelona: Coordinates = [2.1734, 41.3851]
 const madrid: Coordinates = [-3.7, 40.4]
