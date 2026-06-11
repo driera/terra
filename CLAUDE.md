@@ -63,18 +63,25 @@ The `contours` source is already in the style — no `addSource` needed. Add lay
 
 ## Map architecture
 
-All map interactions go through `mapApi` (`src/api/`) — never call MapLibre methods directly. See ADR 003 and ADR 005.
+All map interactions go through `mapApi` (`src/api/`) — never call MapLibre methods directly. See ADR 003, ADR 005 and ADR 010.
 
+- **Commands in via the facade, state out via hooks**: imperative calls use `mapApi.*` (e.g. `mapApi.setDrawingMode()`); reactive reads use the named hooks (`useDrawing`, `usePointer`, `useInitialCenter`). Commands are never imported as named exports.
 - `mapApi.addLayer()` and `mapApi.flyTo()` are load-aware — callers never check `isStyleLoaded()`
-- Map defaults live in `src/canvas/constants.ts` — update there, not inline
-- Layer definitions live in `src/canvas/default-layers.ts` — add new layers there
-- UI controls live in `src/controls/`
-- HUD overlays (coordinates, etc.) live in `src/hud/`
-- Reactive map state uses the `Store<T>` + `useX(keys)` hook pattern from `src/api/` (e.g. `usePointer`). See ADR 004.
+- Map defaults live in `src/features/map/constants.ts` — update there, not inline
+- Layer definitions live in `src/features/map/default-layers.ts` — add new layers there
+- Reactive map state uses the `Store<T>` + `useX(keys)` hook pattern (e.g. `usePointer`). See ADR 004.
 
 ### Folder convention
 
-Top-level folders under `src/` are categories (lowercase): `api`, `canvas`, `controls`, `hud`, `location`. Files inside use PascalCase for components (e.g. `MapCanvas.tsx`, `Coordinates.tsx`) and camelCase for modules/hooks.
+Top-level folders under `src/` are categories (lowercase); files inside use PascalCase for components (e.g. `MapCanvas.tsx`) and camelCase for modules/hooks.
+
+- `api/` — the core. One folder per bounded context (`drawing/`, `pointer/`, `location/`): pure domain logic + store + plugin + hook, exposed only through the barrel `src/api/index.ts`
+- `features/` — presentation layer, one folder per capability mirroring api modules (`map/`, `drawing/`)
+- `ui/` — design-system primitives shared across features (`ToolButton`)
+- `lib/` — shared kernel (`Store`, `logger`); imports neither react nor maplibre
+- `App.tsx` + `Logo.tsx` at `src/` root — composition and layout
+
+Dependency direction is lint-enforced (ADR 010): features import only the api barrel; `api/` and `lib/` never import from `features/`, `ui/`, or `App`.
 
 ---
 
